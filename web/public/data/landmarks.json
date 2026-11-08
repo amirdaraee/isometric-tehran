@@ -1,0 +1,1457 @@
+[
+ {
+  "slug": "golestan-palace",
+  "qid": "Q210610",
+  "kind": "palace",
+  "category": "landmark",
+  "name": {
+   "en": "Golestan Palace",
+   "fa": "کاخ گلستان"
+  },
+  "x": 7790,
+  "y": 5556,
+  "lon": 51.420277777,
+  "lat": 35.679722222,
+  "description": {
+   "en": "palace in Tehran, Iranian national heritage site",
+   "fa": "میراث جهانی یونسکو در تهران، ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Golestan Palace",
+    "url": "https://en.wikipedia.org/wiki/Golestan_Palace",
+    "extract": "The Golestan Palace is the former official royal Qajar complex in Tehran, Iran. One of the oldest historic monuments in the capital and a UNESCO World Heritage Site, the Golestan Palace consists of a group of eight palatial royal structures surrounded by a wall, today used mainly as museums, surrounded by an outer wall, which were once enclosed within the defensive walls of Tehran's citadel."
+   },
+   "fa": {
+    "title": "کاخ گلستان",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%A7%D8%AE_%DA%AF%D9%84%D8%B3%D8%AA%D8%A7%D9%86",
+    "extract": "کاخ گلستان مجموعه‌ای از بناها و باغی تاریخی در مرکز تهران، ایران است. شروع ساخت آن به برپایی ارگ تاریخی تهران در زمان شاه تهماسب یکم صفوی بازمی‌گردد. در دوره زندیه، گلستان برای مدت کوتاهی محل اقامت کریم خان بود ولی در دوره قاجار بود که به منظور سکونت شاهان قاجار در پایتخت نو، کاخ گلستان هم گسترش فراوانی یافت. در زمان پادشاهی پهلوی، از کاخ گلستان برای مراسم رسمی و اقامت روسای جمهور و مهمانان ویژه خارجی استفاده می‌شد."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q210610",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Golestan_Palace",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%A7%D8%AE_%DA%AF%D9%84%D8%B3%D8%AA%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "shams-ol-emareh",
+  "qid": "Q5938898",
+  "kind": "palace",
+  "category": "landmark",
+  "name": {
+   "en": "Shams-ol-Emareh",
+   "fa": "شمسالعماره"
+  },
+  "x": 8057,
+  "y": 5884,
+  "lon": 51.422108,
+  "lat": 35.679069,
+  "description": {
+   "en": "palace in Tehran, Iran",
+   "fa": "موزه در استان تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Shams-ol-Emareh",
+    "url": "https://en.wikipedia.org/wiki/Shams-ol-Emareh",
+    "extract": "Shams-ol-Emareh is one of Tehran’s historic buildings and a remnant of Qajar Iran. It is one of the most prominent buildings on the east side of Golestan Palace. It was built in 1865–1867 and is notable for its height, decorations and design."
+   },
+   "fa": {
+    "title": "شمس‌العماره",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B4%D9%85%D8%B3%E2%80%8C%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D8%B1%D9%87",
+    "extract": "شَمسُ العِماره یکی از بناهای تاریخی مشهور تهران، مربوط به دورهٔ قاجار و از شاخص‌ترین بناهای کاخ گلستان و برجسته‌ترین ساختمان ضلع شرقی مجموعه کاخ گلستان است. کار ساخت شمس‌العماره از سال ۱۲۴۴ تا ۱۲۴۶ خورشیدی به طول انجامید که تاریخ بنایش را بحساب جمل «کاخ شاهنشاه» می‌نامند. دلیل برجسته بودن این سازه، بلندی، تزیینات و طراحی آن است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5938898",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Shams-ol-Emareh",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B4%D9%85%D8%B3%E2%80%8C%D8%A7%D9%84%D8%B9%D9%85%D8%A7%D8%B1%D9%87",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "iwan-of-marble-throne",
+  "qid": "Q20109713",
+  "kind": "palace",
+  "category": "landmark",
+  "name": {
+   "en": "Iwan of Marble Throne",
+   "fa": "ایوان تخت مرمر"
+  },
+  "x": 7773,
+  "y": 5363,
+  "lon": 51.4195,
+  "lat": 35.680305555,
+  "description": {
+   "en": "talar in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Takht-e Marmar Iwan",
+    "url": "https://en.wikipedia.org/wiki/Takht-e_Marmar_Iwan",
+    "extract": "Takht-e Marmar Iwan, is an Iwan-style building in Golestan Palace, Tehran, Iran. It is the oldest surviving edifice in the former royal citadel, dating back to late 18th century. The Iwan is named after the marble-made throne it houses; Takht-e Marmar."
+   },
+   "fa": {
+    "title": "ایوان تخت مرمر",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A7%DB%8C%D9%88%D8%A7%D9%86_%D8%AA%D8%AE%D8%AA_%D9%85%D8%B1%D9%85%D8%B1",
+    "extract": "ایوان تخت مرمر یا ایوان دیوانخانه قدیمی‌ترین بنای کاخ گلستان تهران است که ساخت آن را به کریم‌خان زند نسبت می‌دهند. این اثر با نام عمارت تخت مرمر در تاریخ ۱۱ بهمن ۱۳۳۴ با شمارهٔ ثبت ۴۱۶ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q20109713",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Takht-e_Marmar_Iwan",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A7%DB%8C%D9%88%D8%A7%D9%86_%D8%AA%D8%AE%D8%AA_%D9%85%D8%B1%D9%85%D8%B1",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "tehran-grand-bazaar",
+  "qid": "Q1548608",
+  "kind": "bazaar",
+  "category": "bazaar",
+  "name": {
+   "en": "Tehran Grand Bazaar",
+   "fa": "بازار تهران"
+  },
+  "x": 7821,
+  "y": 6451,
+  "lon": 51.423829169,
+  "lat": 35.676898232,
+  "description": {
+   "en": "The historic and grand bazaar in Tehran, Iran's national heritage",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Grand Bazaar, Tehran",
+    "url": "https://en.wikipedia.org/wiki/Grand_Bazaar%2C_Tehran",
+    "extract": "The Grand Bazaar is a bazaar, located in Central Tehran, Iran. Split into several corridors that are over 10 kilometres (6.2 mi) in length, each specializing in different types of goods, the bazaar has several entrances, with Sabze Meydan being the main entrance."
+   },
+   "fa": {
+    "title": "بازار بزرگ تهران",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%DA%AF_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "بازار بزرگ تهران یک بازار در منطقه ۱۲ در مرکز شهر تهران است. این بازار تاریخی به چندین راسته به طول بیش از ده کیلومتر تقسیم شده که هر کدام در نوعی کالا تخصص دارند و همچنین دارای چندین ورودی است. شکل کلی این بازار به فرم ذوزنقه‌ای به مساحت حدود ۱۱۰ هکتار است که در آن، حدود ۶۰ هزار واحد تجاری فعال هستند."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q1548608",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Grand_Bazaar%2C_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%A8%D8%B2%D8%B1%DA%AF_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "grand-chahar-suq",
+  "qid": "Q5903925",
+  "kind": "bazaar",
+  "category": "bazaar",
+  "name": {
+   "en": "Tehran Bazaar Grand Chahar Suq",
+   "fa": "چهارسوق بزرگ بازار تهران"
+  },
+  "x": 6938,
+  "y": 6811,
+  "lon": 51.423444444,
+  "lat": 35.674388888,
+  "description": {
+   "en": "bazaar intersection in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "چهارسوق بزرگ بازار تهران",
+    "url": "https://fa.wikipedia.org/wiki/%DA%86%D9%87%D8%A7%D8%B1%D8%B3%D9%88%D9%82_%D8%A8%D8%B2%D8%B1%DA%AF_%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "چهار سوق بزرگ بازار تهران مربوط به دوره زند - دوره قاجار است و در تهران، بازار چهل تن واقع شده و این اثر در تاریخ ۲ آبان ۱۳۵۶ با شمارهٔ ثبت ۱۵۴۱ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5903925",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%86%D9%87%D8%A7%D8%B1%D8%B3%D9%88%D9%82_%D8%A8%D8%B2%D8%B1%DA%AF_%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "imam-mosque-bazaar",
+  "qid": "Q5957569",
+  "kind": "mosque",
+  "category": "religion",
+  "name": {
+   "en": "Shah Mosque",
+   "fa": "مسجد امام خمینی (تهران)"
+  },
+  "x": 7170,
+  "y": 6342,
+  "lon": 51.422083333,
+  "lat": 35.67625,
+  "description": {
+   "en": "mosque in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Emam Mosque (Tehran)",
+    "url": "https://en.wikipedia.org/wiki/Emam_Mosque_(Tehran)",
+    "extract": "The Emam Mosque, formerly known as the Soltāni Mosque meaning \"royal\", less commonly spelled as the Imam Mosque is a mosque in the northern section of the Grand Bazaar in Tehran, Iran."
+   },
+   "fa": {
+    "title": "مسجد امام (تهران)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%85%D8%A7%D9%85_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "extract": "مسجد امام بازار تهران، با نام رسمی مسجد امام خمینی،، یکی از بناهای دوره قاجار است که در بازار بزرگ تهران قرار دارد. این مسجد با نام رسمی مسجد امام به عنوان یکی از آثار ملی ایران در تاریخ ۱ مهر ۱۳۶۳ با شمارهٔ ثبت ۱۶۶۷ به ثبت رسیده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5957569",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Emam_Mosque_(Tehran)",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%85%D8%A7%D9%85_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "jameh-mosque-of-tehran",
+  "qid": "Q65197167",
+  "kind": "mosque",
+  "category": "religion",
+  "name": {
+   "en": "Jameh Mosque of Tehran",
+   "fa": "مسجد جامع بازار تهران"
+  },
+  "x": 7418,
+  "y": 6792,
+  "lon": 51.424333333,
+  "lat": 35.675194444,
+  "description": {
+   "en": "mosque in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Jameh Mosque of Tehran",
+    "url": "https://en.wikipedia.org/wiki/Jameh_Mosque_of_Tehran",
+    "extract": "The Jāmeh Mosque of Tehran, also known as the Atiq Mosque and also called the Bazaar Jāmeh Mosque and the Tehran Central Mosque, is a Shi'ite Friday mosque (jāmeh), located in the city of Tehran, in the province of Tehran, Iran. Situated adjacent to the Grand Bazaar, it is the oldest mosque in the city, with its oldest Shabestan, built in the 10th or 11th century CE, during the Al-e Bouyeh era."
+   },
+   "fa": {
+    "title": "مسجد جامع بازار تهران",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "مسجد جامع بازار تهران یا مسجد جامع تهران، کهن‌سال‌ترین مسجد تهران است که قدیمی‌ترین شبستان آن بیش از هزار سال عمر دارد و به مسجد عتیق نیز معروف است. این اثر در تاریخ ۱۹ آذر سال ۱۳۷۵ شمسی و با شماره ۱۷۹۳ در فهرست آثار ملی ایران ثبت گردیده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q65197167",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Jameh_Mosque_of_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "toopkhaneh-square",
+  "qid": "Q1003130",
+  "kind": "square",
+  "category": "square",
+  "name": {
+   "en": "Toopkhaneh (Imam Khomeini) Square",
+   "fa": "میدان امام خمینی"
+  },
+  "x": 9970,
+  "y": 4733,
+  "lon": 51.4215,
+  "lat": 35.685694444,
+  "description": {
+   "en": "square in Tehran, Iran",
+   "fa": "میدانی در مرکز تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Imam Khomeini Square",
+    "url": "https://en.wikipedia.org/wiki/Imam_Khomeini_Square",
+    "extract": "The Imam Khomeini Square also known as Toopkhaneh Square is a major town square in Central Tehran, Iran."
+   },
+   "fa": {
+    "title": "میدان امام خمینی (تهران)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A7%D9%85%D8%A7%D9%85_%D8%AE%D9%85%DB%8C%D9%86%DB%8C_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "extract": "میدان امام خمینی که پیش از انقلاب ۱۳۵۷ ایران با نام های رسمی میدان توپخانه و میدان سپه نامیده می‌شد، یکی از میدان‌های تاریخی و مرکزی شهر تهران است. این میدان در سال ۱۲۸۴ هجری قمری و در اواسط دوره ناصرالدین‌شاه ساخته شد و ساختمان‌های گرداگرد آن بارها تخریب و نوسازی شده‌اند."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q1003130",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Imam_Khomeini_Square",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A7%D9%85%D8%A7%D9%85_%D8%AE%D9%85%DB%8C%D9%86%DB%8C_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "arg-square",
+  "qid": "Q17994165",
+  "kind": "square",
+  "category": "square",
+  "name": {
+   "en": "Citadel Square",
+   "fa": "میدان ارگ"
+  },
+  "x": 7091,
+  "y": 5532,
+  "lon": 51.418805555,
+  "lat": 35.678694444,
+  "description": {
+   "en": "square in Tehran, Iran",
+   "fa": "میدانی قدیمی در شهر تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Arg Square",
+    "url": "https://en.wikipedia.org/wiki/Arg_Square",
+    "extract": "Arg Square is a historical square located in the central Tehran. Once situated at the southwestern corner of Arg of Tehran, it was the most important and largest open space of Old Tehran."
+   },
+   "fa": {
+    "title": "میدان ارگ",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A7%D8%B1%DA%AF",
+    "extract": "میدان اَرگ که امروزه به نام میدان ۱۵ خرداد شناخته می‌شود، میدانی تاریخی در مرکز تهران است. میدان ارگ که روزگاری در گوشه جنوب‌غربی ارگ تهران جای گرفته بود، مدت‌ها بزرگ‌ترین و مهم‌ترین فضای عمومی تهران قدیم به حساب می‌آمد."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q17994165",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Arg_Square",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A7%D8%B1%DA%AF",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "sabzeh-meydan",
+  "qid": "Q112250718",
+  "kind": "square",
+  "category": "square",
+  "name": {
+   "en": "Sabzeh Square (Tehran)",
+   "fa": "سبزه میدان تهران"
+  },
+  "x": 6990,
+  "y": 5889,
+  "lon": 51.42,
+  "lat": 35.677388888,
+  "description": {
+   "en": "square in Tehran, Iran",
+   "fa": null
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "سبزه میدان تهران",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%A8%D8%B2%D9%87_%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "سبزه میدان از میدان‌های مهم دارالخلافه تهران می‌باشد و در محله بازار تهران و خیابان ۱۵ خرداد واقع شده‌ است و در واقع میدان اصلی شهر در دوره قاجار بوده‌ است، که به دستور امیر کبیر درسال ۱۲۶۸ ه‍. ق، توسط حاجب الدوله تغییراتی اساسی در بافت آن به عمل آمد و در دوره رضا شاه هم تغییراتی یافت."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q112250718",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%A8%D8%B2%D9%87_%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "baharestan-square",
+  "qid": "Q5924151",
+  "kind": "square",
+  "category": "square",
+  "name": {
+   "en": "Baharestan Square",
+   "fa": "میدان بهارستان"
+  },
+  "x": 14086,
+  "y": 5169,
+  "lon": 51.431472222,
+  "lat": 35.690666666,
+  "description": {
+   "en": "square in Tehran, Iranian national heritage site",
+   "fa": null
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "میدان بهارستان",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A8%D9%87%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86",
+    "extract": "میدان و محله بهارستان از قدیمی‌ترین میدان‌ها و محله‌های تهران است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5924151",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%A8%D9%87%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "national-garden-gate",
+  "qid": "Q50826657",
+  "kind": "gate",
+  "category": "history",
+  "name": {
+   "en": "National Garden Gate (Bagh-e Melli)",
+   "fa": "سردر باغ ملی"
+  },
+  "x": 8882,
+  "y": 4085,
+  "lon": 51.416861111,
+  "lat": 35.686027777,
+  "description": {
+   "en": "gate in Tehran, Iranian national heritage site",
+   "fa": "بنای تاریخی در استان تهران"
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "سردر باغ ملی",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%B1%D8%AF%D8%B1_%D8%A8%D8%A7%D8%BA_%D9%85%D9%84%DB%8C",
+    "extract": "سردر باغ ملی، از بناهای شاخص به جا مانده از دوره قاجار می‌باشد که در سال‌های ۱۳۰۱ تا ۱۳۰۴ توسط حسین‌علی‌بیک‌تهرانی نوسازی شد. این بنا اکنون یکی از نمادهای شهر تهران است. این بنا در ضلع شمالی خیابان امام خمینی ، در ضلع شرقی وزارت امور خارجه و در ضلع غربی موزه پست و تلگراف قرار دارد."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q50826657",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%B1%D8%AF%D8%B1_%D8%A8%D8%A7%D8%BA_%D9%85%D9%84%DB%8C",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "national-garden",
+  "qid": "Q4841652",
+  "kind": "complex",
+  "category": "history",
+  "name": {
+   "en": "National Garden",
+   "fa": "باغ ملی (تهران)"
+  },
+  "x": 9404,
+  "y": 3804,
+  "lon": 51.416833333,
+  "lat": 35.687722222,
+  "description": {
+   "en": "architectural complex in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "National Garden, Tehran",
+    "url": "https://en.wikipedia.org/wiki/National_Garden%2C_Tehran",
+    "extract": "The National Garden or Ministry of Foreign Affairs Gate is a historical and governmental compound in Tehran, Iran."
+   },
+   "fa": {
+    "title": "میدان مشق",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D9%85%D8%B4%D9%82",
+    "extract": "میدان مشق یک محوطه تاریخی مربوط به دوره قاجار است که در تهران در محدوده بین خیابان امام خمینی و سی تیر واقع شده‌است. این اثر در تاریخ ۱۲ مهر ۱۳۷۷ با شماره ۲۱۳۰ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده‌است. این میدان مدت کوتاهی نیز در دوره رضاشاه به نام باغ ملی خوانده می‌شد و بعد از آن ساختمان‌های دولتی در آن ساخته شد."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q4841652",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/National_Garden%2C_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D9%85%D8%B4%D9%82",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "ministry-of-foreign-affairs",
+  "qid": "Q123945572",
+  "kind": "government",
+  "category": "government",
+  "name": {
+   "en": "Ministry of Foreign Affairs, old central building",
+   "fa": "ساختمان مرکزی وزارت امور خارجه (تهران)"
+  },
+  "x": 9327,
+  "y": 3591,
+  "lon": 51.415861111,
+  "lat": 35.688277777,
+  "description": {
+   "en": "government building in Tehran, Iran",
+   "fa": null
+  },
+  "wikipedia": {},
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q123945572",
+    "licence": "CC0 1.0"
+   }
+  ]
+ },
+ {
+  "slug": "malek-national-museum",
+  "qid": "Q6743603",
+  "kind": "museum",
+  "category": "museum",
+  "name": {
+   "en": "Malek National Library and Museum",
+   "fa": "مؤسسه کتابخانه و موزه ملی ملک"
+  },
+  "x": 9034,
+  "y": 3864,
+  "lon": 51.416305555,
+  "lat": 35.686972222,
+  "description": {
+   "en": "national museum and library in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Malek National Museum and Library",
+    "url": "https://en.wikipedia.org/wiki/Malek_National_Museum_and_Library",
+    "extract": "Malek National Museum and Library is a museum and national library in Tehran, Iran. Malek National Library and Museum Institution (MNLMI) is the first private museum of Iran, and one of six large libraries holding exquisite manuscripts."
+   },
+   "fa": {
+    "title": "کتابخانه و موزه ملی ملک",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%AA%D8%A7%D8%A8%D8%AE%D8%A7%D9%86%D9%87_%D9%88_%D9%85%D9%88%D8%B2%D9%87_%D9%85%D9%84%DB%8C_%D9%85%D9%84%DA%A9",
+    "extract": "مؤسسه کتابخانه و موزه ملی ملک نخستین موزه وقفی - خصوصی ایران و یکی از شش کتابخانه بزرگ کشور با موضوعیت نسخه‌های خطی در تهران است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q6743603",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Malek_National_Museum_and_Library",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%AA%D8%A7%D8%A8%D8%AE%D8%A7%D9%86%D9%87_%D9%88_%D9%85%D9%88%D8%B2%D9%87_%D9%85%D9%84%DB%8C_%D9%85%D9%84%DA%A9",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "national-museum-of-iran",
+  "qid": "Q1631008",
+  "kind": "museum",
+  "category": "museum",
+  "name": {
+   "en": "National Museum of Iran",
+   "fa": "موزه ملی ایران"
+  },
+  "x": 8621,
+  "y": 3641,
+  "lon": 51.414611,
+  "lat": 35.687044,
+  "description": {
+   "en": "museum in Tehran, Iran",
+   "fa": "موزهای در تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "National Museum of Iran",
+    "url": "https://en.wikipedia.org/wiki/National_Museum_of_Iran",
+    "extract": "The National Museum of Iran houses the richest and largest collection of Iranian antiquities in the world. It is located in Tehran. The museum is the world's most important institution for Iranian history and one of the most comprehensive museums globally, home to over 3 million artifacts. The institution is formed of two museums; the Museum of Ancient Iran and the Museum of the Islamic Era."
+   },
+   "fa": {
+    "title": "موزه ملی ایران",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D9%88%D8%B2%D9%87_%D9%85%D9%84%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86",
+    "extract": "موزهٔ ملّیِ ایران در تهران غنی‌ترین مجموعهٔ آثار باستانی ایران در جهان را در خود جای داده است. این موزه شامل دو ساختمان مجزا به نام‌های موزهٔ ایران باستان مربوط به آثار دوران پارینه سنگی قدیم تا دوره پیش از اسلام با تاریخ گشایش ۱۳۱۶، و موزهٔ دوران اسلامی مربوط به آثار باستان‌شناسی و هنر دوران اسلامی ایران با تاریخ گشایش ۱۳۷۵ است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q1631008",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/National_Museum_of_Iran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D9%88%D8%B2%D9%87_%D9%85%D9%84%DB%8C_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "masoudieh-palace",
+  "qid": "Q5958245",
+  "kind": "palace",
+  "category": "landmark",
+  "name": {
+   "en": "Masoudieh Palace",
+   "fa": "عمارت مسعودیه"
+  },
+  "x": 12863,
+  "y": 4987,
+  "lon": 51.428333333,
+  "lat": 35.689333333,
+  "description": {
+   "en": "mansion in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Masoudieh Mansion",
+    "url": "https://en.wikipedia.org/wiki/Masoudieh_Mansion",
+    "extract": "The Masoudieh Mansion is a historic mansion in Tehran, Iran. It was built as a residence for the Qajar prince Mass'oud Mirza Zell-e Soltan in 1878, hence the name Masoudieh."
+   },
+   "fa": {
+    "title": "عمارت مسعودیه (تهران)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B9%D9%85%D8%A7%D8%B1%D8%AA_%D9%85%D8%B3%D8%B9%D9%88%D8%AF%DB%8C%D9%87_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "extract": "عمارت مسعودیه یک ساختمان تاریخی مربوط به دوره قاجار است که در تهران، میدان بهارستان قرار دارد. این بنا در زمینی به وسعت ۱۵۶۰۰ متر مربع و اعیانی حدود ۹۰۰۰ متر مربع احداث شده است. این اثر در تاریخ ۲۷ دی ۱۳۷۷ با شمارهٔ ثبت ۲۱۹۰ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5958245",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Masoudieh_Mansion",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B9%D9%85%D8%A7%D8%B1%D8%AA_%D9%85%D8%B3%D8%B9%D9%88%D8%AF%DB%8C%D9%87_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "lalehzar-street",
+  "qid": "Q934462",
+  "kind": "street",
+  "category": "street",
+  "name": {
+   "en": "Lalehzar Street",
+   "fa": "خیابان لالهزار"
+  },
+  "x": 12756,
+  "y": 3656,
+  "lon": 51.423055555,
+  "lat": 35.693333333,
+  "description": {
+   "en": "street in Tehran, Iran",
+   "fa": "خیابان در تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Laleh-Zar Street",
+    "url": "https://en.wikipedia.org/wiki/Laleh-Zar_Street",
+    "extract": "Laleh-Zar street is one of the oldest streets of Tehran, Iran. This street is bordered to the south by Toopkhaneh Square, and to the north by Enqelab Street."
+   },
+   "fa": {
+    "title": "خیابان لاله‌زار",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AE%DB%8C%D8%A7%D8%A8%D8%A7%D9%86_%D9%84%D8%A7%D9%84%D9%87%E2%80%8C%D8%B2%D8%A7%D8%B1",
+    "extract": "خیابان لاله‌زار با شماره‌گذاری معابر خیابان ۱۱۳۵ تهران و خیابان ۱۱۷۵ تهران (لاله‌زار) یکی از خیابان‌های قدیمی و مرکزی شهر تهران است. این خیابان از جنوب به میدان امام خمینی و از شمال به خیابان انقلاب اسلامی منتهی می‌شود."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q934462",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Laleh-Zar_Street",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AE%DB%8C%D8%A7%D8%A8%D8%A7%D9%86_%D9%84%D8%A7%D9%84%D9%87%E2%80%8C%D8%B2%D8%A7%D8%B1",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "baharestan-mansion",
+  "qid": "Q5885748",
+  "kind": "government",
+  "category": "government",
+  "name": {
+   "en": "Baharestan",
+   "fa": "عمارت بهارستان"
+  },
+  "x": 14459,
+  "y": 5464,
+  "lon": 51.433361111,
+  "lat": 35.690305555,
+  "description": {
+   "en": "government building in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Baharestan Palace",
+    "url": "https://en.wikipedia.org/wiki/Baharestan_Palace",
+    "extract": "Baharestan Palace is the historic Iranian parliament building, inaugurated in 1906. The neighborhood where the palace is located was named after the complex."
+   },
+   "fa": {
+    "title": "عمارت بهارستان",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B9%D9%85%D8%A7%D8%B1%D8%AA_%D8%A8%D9%87%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86",
+    "extract": "عمارت بهارستان، کاخ بهارستان یا دارالشورای ملی ایران نام ساختمانی تاریخی در مجموعه بهارستان تهران و مربوط به سده ۱۳ خورشیدی است. از این ساختمان برای برگزاری نشست‌های مجلس شورای ملی استفاده می‌شد. این ساختمان در سال‌های ۱۳۸۳ و ۱۳۸۴ بخشی از کتابخانه مجلس شورای اسلامی بود. این اثر با نام بنای مجلس شورای ملی و ساختمان‌های ملحق در تاریخ ۳ خرداد ۱۳۵۷ با شمارهٔ ثبت ۱۶۰۵ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5885748",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Baharestan_Palace",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B9%D9%85%D8%A7%D8%B1%D8%AA_%D8%A8%D9%87%D8%A7%D8%B1%D8%B3%D8%AA%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "sepahsalar-mosque",
+  "qid": "Q5945207",
+  "kind": "mosque",
+  "category": "religion",
+  "name": {
+   "en": "Sepahsalar Mosque",
+   "fa": "مسجد سپهسالار"
+  },
+  "x": 13903,
+  "y": 5677,
+  "lon": 51.433055555,
+  "lat": 35.688777777,
+  "description": {
+   "en": "mosque in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Sepahsalar Mosque",
+    "url": "https://en.wikipedia.org/wiki/Sepahsalar_Mosque",
+    "extract": "The Sepahsālār Mosque is a mosque and madrasa located in the Baharestan district of the city of Tehran, in the province of Tehran, Iran. Construction of the mosque commenced in 1879 CE upon the order of Mirza Hosein Sepahsalar, a Grand Vizier of Iran during the reign of Naser al-Din Shah Qajar, and the first phase of construction was finished in 1884 CE."
+   },
+   "fa": {
+    "title": "مسجد سپهسالار",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%B3%D9%BE%D9%87%D8%B3%D8%A7%D9%84%D8%A7%D8%B1",
+    "extract": "مسجد سپهسالار یکی از نخستین و بزرگ‌ترین مسجدهای شهر تهران است. این مسجد در مجموعه مدرسه‌عالی و دانشگاه شهید مطهری در کنار عمارت بهارستان مجلس شورای ملی در میدان بهارستان تهران جای گرفته‌ است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5945207",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Sepahsalar_Mosque",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D8%B3%D8%AC%D8%AF_%D8%B3%D9%BE%D9%87%D8%B3%D8%A7%D9%84%D8%A7%D8%B1",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "dar-ul-funun",
+  "qid": "Q1165599",
+  "kind": "school",
+  "category": "education",
+  "name": {
+   "en": "Dar ul-Funun",
+   "fa": "دارالفنون"
+  },
+  "x": 9470,
+  "y": 5097,
+  "lon": 51.421916666,
+  "lat": 35.68375,
+  "description": {
+   "en": "university in Tehran, Iranian national heritage site",
+   "fa": "نخستین سازمان آموزش عالی نوین در ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Dar al-Fonun",
+    "url": "https://en.wikipedia.org/wiki/Dar_al-Fonun",
+    "extract": "Dar ul-Funun was an institute of higher education in Qajar Iran. It was established in 1851 by Amir Kabir, the grand vizier to Nasereddin Shah."
+   },
+   "fa": {
+    "title": "دارالفنون",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%A7%D8%B1%D8%A7%D9%84%D9%81%D9%86%D9%88%D9%86",
+    "extract": "دارالفنون نخستین سازمان آموزش عالی نوین یا نخستین دانشگاه در ایران است، که در ششم دی ۱۲۳۰ خورشیدی به ابتکار میرزا تقی‌خان امیرکبیر در دوران ناصرالدین‌شاه قاجار بنیان‌گذاری شد. این نهاد در خیابان ناصرخسرو در مرکز تهران واقع شده و هدف اصلی آن آموزش علوم و فنون جدید به جوانان ایرانی بود. دارالفنون هستهٔ اولیه هنرسرای پلی تکنیک تهران و دانشگاه صنعتی امیرکبیر بوده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q1165599",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Dar_al-Fonun",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AF%D8%A7%D8%B1%D8%A7%D9%84%D9%81%D9%86%D9%88%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "imperial-bank-building",
+  "qid": "Q5885113",
+  "kind": "government",
+  "category": "government",
+  "name": {
+   "en": "Imperial Bank Building",
+   "fa": "ساختمان بانک شاهی"
+  },
+  "x": 10500,
+  "y": 4859,
+  "lon": 51.423055555,
+  "lat": 35.686111111,
+  "description": {
+   "en": "bank building in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Imperial Bank building, Tehran",
+    "url": "https://en.wikipedia.org/wiki/Imperial_Bank_building%2C_Tehran",
+    "extract": "The Imperial Bank building is a historic building in Toopkhaneh Square Tehran, Iran. It was constructed in 1929 on a design by architect Markar Galstiants, replacing an earlier building from the late Qajar era. It was the head office of the Imperial Bank of Persia and of its successor entities the Imperial Bank of Iran (1935–1949), British Bank of Iran and the Middle East (1949–1952), and Bank Bazargani (1952–1979)."
+   },
+   "fa": {
+    "title": "ساختمان بانک شاهی",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86_%D8%A8%D8%A7%D9%86%DA%A9_%D8%B4%D8%A7%D9%87%DB%8C",
+    "extract": "ساختمان تاریخی موزه بانک تجارت مربوط به دوره قاجار است و در تهران، ضلع شرقی میدان امام خمینی واقع شده و این اثر در تاریخ ۱۲ بهمن ۱۳۸۱ با شمارهٔ ثبت ۷۴۴۰ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5885113",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Imperial_Bank_building%2C_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%A7%D8%AE%D8%AA%D9%85%D8%A7%D9%86_%D8%A8%D8%A7%D9%86%DA%A9_%D8%B4%D8%A7%D9%87%DB%8C",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "ebrat-museum",
+  "qid": "Q3535950",
+  "kind": "museum",
+  "category": "museum",
+  "name": {
+   "en": "Ebrat Museum",
+   "fa": "زندان کمیته مشترک ضدخرابکاری"
+  },
+  "x": 9688,
+  "y": 4154,
+  "lon": 51.41875,
+  "lat": 35.687055555,
+  "description": {
+   "en": "prison museum in Tehran, Iran",
+   "fa": "یکی از زندانهای دوره شاهنشاهی در تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Towhid Prison",
+    "url": "https://en.wikipedia.org/wiki/Towhid_Prison",
+    "extract": "Anti-sabotage Joint Committee, or Komiteh Moshtarak, was built in the 1930s. It was made out of repurposed prison space with German assistance and opened in 1937 under the reign of Reza Shah. It was used by Pahlavi regime, especially its secret police known as SAVAK against political opponents."
+   },
+   "fa": {
+    "title": "زندان کمیته مشترک ضدخرابکاری",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B2%D9%86%D8%AF%D8%A7%D9%86_%DA%A9%D9%85%DB%8C%D8%AA%D9%87_%D9%85%D8%B4%D8%AA%D8%B1%DA%A9_%D8%B6%D8%AF%D8%AE%D8%B1%D8%A7%D8%A8%DA%A9%D8%A7%D8%B1%DB%8C",
+    "extract": "موزه عبرت ساختمانی در محوطه باغ ملی تهران است که از سال ۱۳۱۶ در زمان حکومت پهلوی توقیفگاه، زندان موقت شهربانی، زندان زنان و بعد زندان کمیتهٔ مشترک ضد خرابکاری نام گرفت. این زندان توسط ساواک برای بازجویی و شکنجه مخالفان حکومت پهلوی مورد استفاده بود. حدود ۸ هزار و ۴۴۲ زندانی که از سال ۵۰ تا ۵۷ در این زندان بوده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q3535950",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Towhid_Prison",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B2%D9%86%D8%AF%D8%A7%D9%86_%DA%A9%D9%85%DB%8C%D8%AA%D9%87_%D9%85%D8%B4%D8%AA%D8%B1%DA%A9_%D8%B6%D8%AF%D8%AE%D8%B1%D8%A7%D8%A8%DA%A9%D8%A7%D8%B1%DB%8C",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "abgineh-museum",
+  "qid": "Q1479500",
+  "kind": "museum",
+  "category": "museum",
+  "name": {
+   "en": "Abgineh Museum of Tehran",
+   "fa": "موزه آبگینه و سفالینه"
+  },
+  "x": 10733,
+  "y": 2652,
+  "lon": 51.415083333,
+  "lat": 35.693416666,
+  "description": {
+   "en": "museum in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Abgineh Museum of Tehran",
+    "url": "https://en.wikipedia.org/wiki/Abgineh_Museum_of_Tehran",
+    "extract": "The Glassware and Ceramic Museum of Iran or simply Abgineh Museum is located at 30 Tir Street, in Tehran, Iran. The museum contains more than 1000 art pieces from Prehistory to recent times."
+   },
+   "fa": {
+    "title": "موزه آبگینه و سفالینه",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D9%88%D8%B2%D9%87_%D8%A2%D8%A8%DA%AF%DB%8C%D9%86%D9%87_%D9%88_%D8%B3%D9%81%D8%A7%D9%84%DB%8C%D9%86%D9%87",
+    "extract": "موزهٔ آبگینه و سفالینه‌های ایران یکی از موزه‌های شهر تهران است. عمارت این موزه، خانه‌ای تاریخی مربوط به دوره قاجار در تهران، خیابان سی تیر جای گرفته است. این اثر در تاریخ ۷ اردیبهشت ۱۳۷۷ با شمارهٔ ثبت ۲۰۱۴ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است. آبگینه موزه تخصصی شیشه و سفال است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q1479500",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Abgineh_Museum_of_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%D9%88%D8%B2%D9%87_%D8%A2%D8%A8%DA%AF%DB%8C%D9%86%D9%87_%D9%88_%D8%B3%D9%81%D8%A7%D9%84%DB%8C%D9%86%D9%87",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "tehran-courthouse",
+  "qid": "Q6349378",
+  "kind": "government",
+  "category": "government",
+  "name": {
+   "en": "Tehran Courthouse",
+   "fa": "کاخ دادگستری تهران"
+  },
+  "x": 7965,
+  "y": 5042,
+  "lon": 51.418694444,
+  "lat": 35.681583333,
+  "description": {
+   "en": "courthouse in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Courthouse of Tehran",
+    "url": "https://en.wikipedia.org/wiki/Courthouse_of_Tehran",
+    "extract": "Courthouse of Tehran, also known as the Palace of Justice, is a historic courthouse in Tehran, Iran. The building was designed by Czech architect Stanislav Sůva in the Neoclassical style to house 1,200 employees, serving as the Ministry of Justice, the law court, and the criminal and civil courts."
+   },
+   "fa": {
+    "title": "کاخ دادگستری تهران",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%A7%D8%AE_%D8%AF%D8%A7%D8%AF%DA%AF%D8%B3%D8%AA%D8%B1%DB%8C_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "کاخ دادگستری بنای تاریخی در ایران و ساختمان دادگستری کل کشور است که در خیابان خیام، تهران قرار دارد. این اثر با نام ساختمان دادگستری کل کشور در تاریخ ۱۶ اسفند ۱۳۸۴ با شمارهٔ ثبت ۱۴۶۱۴ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q6349378",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Courthouse_of_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D8%A7%D8%AE_%D8%AF%D8%A7%D8%AF%DA%AF%D8%B3%D8%AA%D8%B1%DB%8C_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "city-park",
+  "qid": "Q913711",
+  "kind": "park",
+  "category": "park",
+  "name": {
+   "en": "City Park",
+   "fa": "پارک شهر"
+  },
+  "x": 7261,
+  "y": 4227,
+  "lon": 51.414166666,
+  "lat": 35.683055555,
+  "description": {
+   "en": "park in Tehran, Iran",
+   "fa": "پارک در تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Park-e Shahr (Tehran)",
+    "url": "https://en.wikipedia.org/wiki/Park-e_Shahr_(Tehran)",
+    "extract": "Park-e Shahr, with its 26 hectares, is an urban park located in central Tehran, Iran."
+   },
+   "fa": {
+    "title": "پارک شهر",
+    "url": "https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%D8%B1%DA%A9_%D8%B4%D9%87%D8%B1",
+    "extract": "پارکِ شَهْر قدیمی‌ترین پارک شهر تهران است. این پارک که در منطقه ۱۲ در مرکز تهران در محدوده خیابان‌های خیابان خیام و شهید فیاض‌بخش قرار دارد. این پارک در بیست و پنجم اسفند ۱۳۲۹ در زمینی که پیش از این با تخریب بخشی از محله سنگلج چندین سال خالی مانده بود، گشایش یافت. مساحت این پارک تقریباً ۲۵ هکتار است و ۸ در ورودی دارد."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q913711",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Park-e_Shahr_(Tehran)",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%BE%D8%A7%D8%B1%DA%A9_%D8%B4%D9%87%D8%B1",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "arsenal-gate",
+  "qid": "Q5895612",
+  "kind": "gate",
+  "category": "history",
+  "name": {
+   "en": "Arsenal Gate (Tehran)",
+   "fa": "سردر قورخانه تهران"
+  },
+  "x": 8914,
+  "y": 4496,
+  "lon": 51.418472222,
+  "lat": 35.684805555,
+  "description": {
+   "en": "gate in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "سردر قورخانه تهران",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%B1%D8%AF%D8%B1_%D9%82%D9%88%D8%B1%D8%AE%D8%A7%D9%86%D9%87_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "extract": "سر در قورخانه تهران بنایی مربوط به دوره قاجار است و در تهران، خیابان امام خمینی، ابتدای خیابان خیام واقع شده‌است. این اثر در تاریخ ۱۱ مرداد ۱۳۷۶ با شمارهٔ ثبت ۱۹۱۲ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5895612",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%B3%D8%B1%D8%AF%D8%B1_%D9%82%D9%88%D8%B1%D8%AE%D8%A7%D9%86%D9%87_%D8%AA%D9%87%D8%B1%D8%A7%D9%86",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "tekyeh-dowlat-site",
+  "qid": "Q5964033",
+  "kind": "site",
+  "category": "history",
+  "name": {
+   "en": "Dowlat Tekiyeh",
+   "fa": "تکیه دولت"
+  },
+  "x": 7494,
+  "y": 5789,
+  "lon": 51.420611111,
+  "lat": 35.6785,
+  "description": {
+   "en": "destroyed tekiyeh in Tehran, Iran",
+   "fa": "تکیهای در تهران، ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Takyeh Dowlat",
+    "url": "https://en.wikipedia.org/wiki/Takyeh_Dowlat",
+    "extract": "The Takyeh Dowlat was a royal theater in Tehran, built in 1868 by the order of Naser al-Din Shah Qajar. With a capacity for 20,000 people, it was the largest theater in the history of Iran. The theater's sumptuous magnificence surpassed that of Europe's greatest opera houses in the opinion of many Western visitors. Samuel Greene Wheeler Benjamin said on his first visit that it was comparable to Verona Arena."
+   },
+   "fa": {
+    "title": "تکیه دولت",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AA%DA%A9%DB%8C%D9%87_%D8%AF%D9%88%D9%84%D8%AA",
+    "extract": "تکیه دولت که از آن با عناوین دیگری همچون تکیه همایونی دولتی، تکیه قصر، تکیه بزرگ شاهی نیز نام برده شده است، بنایی بود که در عهد ناصرالدین شاه قاجار و به منظور اجرای مراسم تعزیه و برگزاری آئین‌های سوگواری و روضه خوانی در ایام عاشورا در تهران قدیم برپا شد. تکیه دولت نه تنها به لحاظ معماری و جنبه‌های تاریخی بلکه از لحاظ اجرای مراسم باشکوه تعزیه نیز دارای اهمیت خاصی بوده است."
+   }
+  },
+  "note": "destroyed in 1947; the pin marks where it stood",
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5964033",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Takyeh_Dowlat",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%AA%DA%A9%DB%8C%D9%87_%D8%AF%D9%88%D9%84%D8%AA",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "saint-mary-church",
+  "qid": "Q25432591",
+  "kind": "church",
+  "category": "religion",
+  "name": {
+   "en": "Saint Mary Armenian Church",
+   "fa": "کلیسای مریم مقدس"
+  },
+  "x": 11405,
+  "y": 2237,
+  "lon": 51.414861111,
+  "lat": 35.69575,
+  "description": {
+   "en": "church in Tehran, Iranian national heritage site",
+   "fa": "کلیسایی در شهر تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Holy Mother of God Church, Tehran",
+    "url": "https://en.wikipedia.org/wiki/Holy_Mother_of_God_Church%2C_Tehran",
+    "extract": "Surp Asdvadzadzin Church, Holy Mother of God Church, or Saint Mary Church, is an Armenian Apostolic church in Tehran, Iran completed in 1945."
+   },
+   "fa": {
+    "title": "کلیسای مریم مقدس (تهران)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D9%84%DB%8C%D8%B3%D8%A7%DB%8C_%D9%85%D8%B1%DB%8C%D9%85_%D9%85%D9%82%D8%AF%D8%B3_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "extract": "کلیسای مریم مقدس مربوط به دوره پهلوی است و در تهران، خیابان میرزا کوچک خان واقع شده و این اثر در تاریخ ۱۲ بهمن ۱۳۸۱ با شماره ثبت ۷۲۳۷ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q25432591",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Holy_Mother_of_God_Church%2C_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D9%84%DB%8C%D8%B3%D8%A7%DB%8C_%D9%85%D8%B1%DB%8C%D9%85_%D9%85%D9%82%D8%AF%D8%B3_(%D8%AA%D9%87%D8%B1%D8%A7%D9%86)",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "thaddeus-bartholomew-church",
+  "qid": "Q5895373",
+  "kind": "church",
+  "category": "religion",
+  "name": {
+   "en": "Saints Thaddeus and Bartholomew Church (Tehran)",
+   "fa": "عمارت کلیسای طاطاوس"
+  },
+  "x": 6762,
+  "y": 7985,
+  "lon": 51.427583333,
+  "lat": 35.670416666,
+  "description": {
+   "en": "church in Tehran, Iranian national heritage site",
+   "fa": "کلیسایی در شهر تهران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Saints Thaddeus and Bartholomew Church of Tehran",
+    "url": "https://en.wikipedia.org/wiki/Saints_Thaddeus_and_Bartholomew_Church_of_Tehran",
+    "extract": "Saints Thaddeus and Bartholomew Church of Tehran is an Armenian Apostolic church in Tehran, Iran. It is the oldest church in Tehran."
+   },
+   "fa": {
+    "title": "کلیسای تادئوس و بارتوقیمئوس مقدس",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D9%84%DB%8C%D8%B3%D8%A7%DB%8C_%D8%AA%D8%A7%D8%AF%D8%A6%D9%88%D8%B3_%D9%88_%D8%A8%D8%A7%D8%B1%D8%AA%D9%88%D9%82%DB%8C%D9%85%D8%A6%D9%88%D8%B3_%D9%85%D9%82%D8%AF%D8%B3",
+    "extract": "کلیسای تادئوس و بارتوقیمئوس مقدس(به ارمنی: Սուրբ Թադևոս եկեղեցի) در سال ۱۷۶۸ میلادی تأسیس گردید اما براساس سنگ یادبودی که بر دیوار مجاور مدخل کلیسا نصب شده تاریخ ساخت این بنا را اکتبر ۱۸۰۸ میلادی (۱۱۸۷) است و همچنین با استناد به خاطرات «هُوسِپ هُوهانِسیان» این کلیسا در روز اول سپتامبر ۱۷۸۸ (۱۱۶۰) به دست اسقف اعظم، «گریکور دِرهُوانِسیان»، تقدیس شده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5895373",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Saints_Thaddeus_and_Bartholomew_Church_of_Tehran",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%DA%A9%D9%84%DB%8C%D8%B3%D8%A7%DB%8C_%D8%AA%D8%A7%D8%AF%D8%A6%D9%88%D8%B3_%D9%88_%D8%A8%D8%A7%D8%B1%D8%AA%D9%88%D9%82%DB%8C%D9%85%D8%A6%D9%88%D8%B3_%D9%85%D9%82%D8%AF%D8%B3",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "bank-melli-water-tower",
+  "qid": "Q5880544",
+  "kind": "tower",
+  "category": "history",
+  "name": {
+   "en": "Bank Melli Water Tower",
+   "fa": "برج آب بانک ملی"
+  },
+  "x": 10743,
+  "y": 3138,
+  "lon": 51.416944444,
+  "lat": 35.691916666,
+  "description": {
+   "en": "water tower in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "fa": {
+    "title": "برج آب بانک ملی",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%B1%D8%AC_%D8%A2%D8%A8_%D8%A8%D8%A7%D9%86%DA%A9_%D9%85%D9%84%DB%8C",
+    "extract": "برج آب بانک ملی مربوط به دوره قاجار است و در تهران، خیابان فردوسی ـ محوطه بانک ملی واقع شده و این اثر در تاریخ ۱۱ مرداد ۱۳۷۶ با شمارهٔ ثبت ۱۹۱۱ به‌عنوان یکی از آثار ملی ایران به ثبت رسیده است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q5880544",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D8%A8%D8%B1%D8%AC_%D8%A2%D8%A8_%D8%A8%D8%A7%D9%86%DA%A9_%D9%85%D9%84%DB%8C",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ },
+ {
+  "slug": "hasan-abad-square",
+  "qid": "Q913822",
+  "kind": "square",
+  "category": "square",
+  "name": {
+   "en": "Hasan Abad Square",
+   "fa": "میدان حسنآباد"
+  },
+  "x": 7189,
+  "y": 3222,
+  "lon": 51.410138888,
+  "lat": 35.686138888,
+  "description": {
+   "en": "square in Tehran, Iranian national heritage site",
+   "fa": "اثر ثبتشده در فهرست آثار ملی ایران"
+  },
+  "wikipedia": {
+   "en": {
+    "title": "Hasanabad Square (Tehran)",
+    "url": "https://en.wikipedia.org/wiki/Hasanabad_Square_(Tehran)",
+    "extract": "Hasan-Abad Square, also spelled Hasanabad, is a historic area and city square in Tehran, Iran."
+   },
+   "fa": {
+    "title": "میدان حسن‌آباد",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%AD%D8%B3%D9%86%E2%80%8C%D8%A2%D8%A8%D8%A7%D8%AF",
+    "extract": "میدان حسن‌آباد میدانی است در بافت تاریخی شهر تهران که در تقاطع خیابان امام خمینی (سپه) با خیابان حافظ و خیابان وحدت اسلامی واقع شده‌است."
+   }
+  },
+  "note": null,
+  "sources": [
+   {
+    "title": "Wikidata",
+    "url": "https://www.wikidata.org/wiki/Q913822",
+    "licence": "CC0 1.0"
+   },
+   {
+    "title": "Wikipedia (en)",
+    "url": "https://en.wikipedia.org/wiki/Hasanabad_Square_(Tehran)",
+    "licence": "CC BY-SA 4.0"
+   },
+   {
+    "title": "Wikipedia (fa)",
+    "url": "https://fa.wikipedia.org/wiki/%D9%85%DB%8C%D8%AF%D8%A7%D9%86_%D8%AD%D8%B3%D9%86%E2%80%8C%D8%A2%D8%A8%D8%A7%D8%AF",
+    "licence": "CC BY-SA 4.0"
+   }
+  ]
+ }
+]
