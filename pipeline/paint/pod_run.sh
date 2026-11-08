@@ -30,7 +30,12 @@ print("\n".join(["numpy", "pillow", "scipy", "opencv-python-headless"]))
 EOF
   /venv/bin/pip install -q --no-cache-dir -r /workspace/requirements.txt >> /workspace/setup.log 2>&1 \
     || { echo "SETUP FAILED (see /workspace/setup.log)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
-  /venv/bin/python -c "import torch;assert torch.cuda.is_available();print('torch',torch.__version__,torch.version.cuda)" \
+  # The image has torch but not torchvision, which the Qwen2-VL processor needs: install the build that matches
+  # the image's torch (torch 2.X.Y -> torchvision 0.(X+15).Y, from the same CUDA index), keeping that torch.
+  TV=$(/venv/bin/python -c "import torch;v=torch.__version__.split('+')[0].split('.');c=torch.version.cuda.replace('.','');print(f'torchvision==0.{int(v[1])+15}.{v[2]} torch=={torch.__version__.split(\"+\")[0]} --index-url https://download.pytorch.org/whl/cu{c}')")
+  /venv/bin/python -c "import torchvision" 2>/dev/null || /venv/bin/pip install -q --no-cache-dir $TV >> /workspace/setup.log 2>&1 \
+    || { echo "SETUP FAILED (torchvision: $TV; see /workspace/setup.log)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
+  /venv/bin/python -c "import torch,torchvision;assert torch.cuda.is_available();print('torch',torch.__version__,torch.version.cuda,'torchvision',torchvision.__version__)" \
     >> "$LOG" 2>&1 || { echo "SETUP FAILED (no CUDA)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
   echo "SETUP DONE $(date -u +%H:%M:%S)" >> "$LOG"
 fi
