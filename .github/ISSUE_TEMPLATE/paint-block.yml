@@ -1,0 +1,65 @@
+name: Paint a block
+description: Claim a block of the map to paint with your own GPU (or one you rent). See docs/PAINTING.md first.
+title: "Paint block b__ (day)"
+labels: [art]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping paint Tehran. Before claiming, please read [docs/PAINTING.md](https://github.com/amirdaraee/isometric-tehran/blob/main/docs/PAINTING.md),
+        run the dry run (`python paint/paint.py dry-run`), and check which blocks are ready with
+        `python paint/blocks.py status`. A block is ready when every earlier neighbour is done.
+  - type: input
+    id: block
+    attributes:
+      label: Block
+      description: The block id from `paint/blocks.py status` (it must be "ready").
+      placeholder: b03
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: Golden hour and night start from the block's finished day version.
+      options: [day, golden, night]
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where will you paint it?
+      options:
+        - My own GPU, 80 GB (memory profile full)
+        - My own GPU, 48 GB (memory profile offload)
+        - My own GPU, 24 GB (memory profile nf4)
+        - A RunPod pod on my own account
+    validations:
+      required: true
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU model
+      placeholder: RTX 4090
+  - type: input
+    id: when
+    attributes:
+      label: When do you expect to submit it?
+      description: Claims with no submission after 14 days may be passed on; just say here if you need longer.
+      placeholder: within a week
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: Agreements
+      options:
+        - label: I will paint with this project's pipeline and pay for any GPU time myself, on my own account.
+          required: true
+        - label: I agree that the block I submit is published under CC BY-NC 4.0 (LICENSE-ART.md), as part of Isometric Tehran.
+          required: true
+        - label: I have read the base-art rules (nothing that moves, still water, summer trees) and how quality is judged.
+          required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else, such as prompt hints you want to try for the landmarks in this block.

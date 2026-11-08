@@ -14,6 +14,7 @@ issue first so we can agree on the approach.
 | `web/public/data/` | Pins, landmark cards, street lines, water and cloud masks (pipeline output) | yes |
 | `web/public/tiles/` | The map tiles (pipeline output; about 11 MB in the first draft) | yes, for now |
 | `pipeline/` | Python: downloads, scene, render, tiles, places; tests in `pipeline/tests/` | yes |
+| `pipeline/paint/` | The painter: block plan, painting, claims, submissions, review ([docs/PAINTING.md](docs/PAINTING.md)) | yes (painted canvases: release assets) |
 | `docs/` | Data sources and screenshots | yes |
 | `data/` | Raw downloads and work files | no |
 
@@ -62,6 +63,21 @@ The same checks run in CI as three jobs: `web`, `pipeline` and `repo-checks`.
 - **Viewer:** a Persian (Solar Hijri) date next to the time when the interface is in Persian.
 - **Accessibility:** keyboard focus order and screen-reader labels in right-to-left mode.
 
+## Paint a block of the map
+
+The map is painted block by block, and you can paint one with your own GPU (24 GB or more) or a GPU you rent on
+your own RunPod account (about $1 to $1.50 a block). Try the dry run first; it needs no GPU:
+
+    cd pipeline
+    .venv/bin/python paint/paint.py dry-run      # the whole flow on the CPU, about ten seconds
+    .venv/bin/python paint/blocks.py status      # which blocks are ready to claim
+
+Then claim a ready block with a [Paint a block](https://github.com/amirdaraee/isometric-tehran/issues/new?template=paint-block.yml)
+issue, paint it with `paint/paint.py run`, and submit it with `paint/paint.py submit`: the canvas goes in a
+release on your fork, and the pull request adds only a small JSON file. [docs/PAINTING.md](docs/PAINTING.md) has
+the hardware, cost, setup, prompts, how quality is judged and the licences. Painted blocks are accepted under
+CC BY-NC 4.0. Improving the landmark hints in `pipeline/paint/prompts/landmarks.json` needs no GPU at all.
+
 ## How to add a landmark
 
 1. Find the landmark on [Wikidata](https://www.wikidata.org). It must have coordinates inside the bbox in
@@ -109,7 +125,8 @@ Wikidata or Wikipedia first.
 - Data must have an open licence that allows redistribution, and its credit goes in the README and the viewer's
   About panel.
 - One heavy process at a time; the first-draft render takes about 10 s and 2 GB of memory.
-- **No paid or GPU jobs without the owner's approval of the budget first.**
+- **No paid or GPU jobs without the owner's approval of the budget first.** Painting a block you claimed, on
+  your own GPU or your own rented one, is the exception (docs/PAINTING.md): you pay for it, nobody else.
 - Base art rules (for the painting to come): nothing that moves is drawn into the map (no cars, people, birds),
   water is still, trees are summer.
 

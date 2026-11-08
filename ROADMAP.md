@@ -16,14 +16,22 @@ order is.
 
 ## 2. Paint pilot
 
-- [ ] Guides for the painter from the render: line pass (edges and windows) and the kinds pass that exists.
-- [ ] Paint one block (Golestan Palace and the Arg) in the inked style of Isometric Luxembourg, reusing its style
-      model first, then decide whether Tehran needs its own style training (budget approved before any GPU time).
-- [ ] Water mask and seams checked on the painted art.
+- [x] The painting pipeline from Isometric Luxembourg, open to contributors (`pipeline/paint/`,
+      [docs/PAINTING.md](docs/PAINTING.md)): whole-block painting with a shifted grid, resume and held neighbours;
+      a block plan of 15 blocks outward from Golestan Palace; claims and submissions by pull request; review
+      checks (position, held pixels, seams) and feathered blending; local GPU (24, 48 or 80 GB) or a RunPod pod on
+      the painter's own account; a CPU dry run that CI also runs.
+- [x] Guides for the painter: the layout map from the kinds pass. Still to do: a line pass (edges and windows).
+- [ ] Publish the style and light LoRAs on Hugging Face (CC BY-NC 4.0) under the name in `paint.json`.
+- [ ] Paint the pilot block b00 (Golestan Palace and the Arg) in the inked style of Isometric Luxembourg, reusing
+      its style model first; measure time and peak memory; then decide whether Tehran needs its own style training
+      (budget approved before any GPU time).
+- [ ] Set the pool colour (`paint.json` water.lab) from the pilot; check the water mask and seams on painted art.
+- [ ] Open painting to contributors: blocks b01 onwards, claimed with the "Paint a block" issue.
 
 ## 3. The full core, painted
 
-- [ ] The whole bbox painted by day, then golden hour and night versions.
+- [ ] The whole bbox painted by day (15 blocks), then golden hour and night versions, by contributors.
 - [ ] Landmark cards with credited photos (Wikimedia Commons) and short histories, in both languages.
 - [ ] Tiles move out of git to release assets or object storage.
 
