@@ -168,7 +168,8 @@ def cmd_run(args) -> int:
     return 0
 
 
-def make_submission(plan: dict, bid: str, version: str, by: str, url: str, root: Path | None = None) -> dict:
+def make_submission(plan: dict, bid: str, version: str, by: str, url: str, root: Path | None = None,
+                    allow_file: bool = False) -> dict:
     d = (root or config.PAINT_WORK) / bid
     c = d / f"canvas_{version}.png"
     job = json.loads((d / f"job_{version}.json").read_text(encoding="utf-8"))
@@ -186,7 +187,7 @@ def make_submission(plan: dict, bid: str, version: str, by: str, url: str, root:
                         "mode": st.get("mode"), "seed": s["seed"], "minutes": st.get("minutes"),
                         "per_window_s": st.get("per_window_s"), "peak_gpu_gb": st.get("peak_gpu_gb")},
            "licence": registry.LICENCE, "agree": True}
-    return registry.parse_submission(sub)
+    return registry.parse_submission(sub, allow_file=allow_file)
 
 
 def cmd_submit(args) -> int:
@@ -217,7 +218,7 @@ def cmd_submit(args) -> int:
     else:
         print(f"\nupload the canvas so it is at {url}:\n  cp {c} {name}\n  gh release create {tag} {name} "
               f"--repo {args.by}/{repo_name} --title 'Painted block {args.block} ({args.version})'\n"
-              f"(or pass --upload, or host it elsewhere and pass --url)")
+              f"(or pass --upload, or pass --url with another GitHub release download URL)")
     print(f"then open a pull request that adds {dest.relative_to(config.ROOT)} (docs/PAINTING.md, 'Submit').")
     return 0
 
@@ -248,7 +249,7 @@ def main(argv=None) -> int:
     s.add_argument("block")
     s.add_argument("--version", default="day")
     s.add_argument("--by", required=True, help="your GitHub user name")
-    s.add_argument("--url", help="where the canvas can be downloaded (default: a release on your fork)")
+    s.add_argument("--url", help="a GitHub release download URL for the canvas (default: a release on your fork)")
     s.add_argument("--upload", action="store_true", help="create that release with gh")
     d = sub.add_parser("dry-run")
     d.add_argument("--out", help="folder for the dry run (default data/work/paint-dry)")

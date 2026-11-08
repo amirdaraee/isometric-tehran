@@ -39,6 +39,10 @@ Rebuild the map: `fetch_data.py all`, `build_scene.py`, `render.py`, `build_tile
 Painting: `paint/blocks.py plan|status`, `paint/paint.py dry-run` (CPU, no GPU or network), `paint/paint.py
 estimate|run|submit`, `paint/review.py check|fetch|blend|tiles|publish`. torch and diffusers are only in the
 `paint` extra: nothing in CI or the tests may import them (`qwen.py` is imported only for a real run).
+Submissions are untrusted data: review them from a checkout of `main` with only the JSON copied in (`git show
+<pr-head>:pipeline/paint/submissions/<x>.json > /tmp/<x>.json`), never by running code from a pull request's
+branch. A submission pull request changes only `pipeline/paint/submissions/*.json`
+(`scripts/check_submission_pr.py`, in `repo-checks`). Keep CI on `pull_request`, never `pull_request_target`.
 
 ## Tests to run before a pull request
 

@@ -15,11 +15,17 @@ import datetime as dt
 import json
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
-from paint.config import CLAIMS, SUBMISSIONS
+from paint.config import CLAIMS, PAINT_WORK, SUBMISSIONS
 
 CLAIM_DAYS = 14
-BLOCK_ID = re.compile(r"^b\d{2,3}$")
+BLOCK_ID = re.compile(r"^b\d{2}$")
+# Where a submitted canvas may be downloaded from: GitHub release assets only (https). A github.com release URL
+# redirects to one of the asset hosts. Local files are allowed only by the CPU dry run, through allow_file.
+GITHUB_RELEASE = re.compile(r"^https://github\.com/[A-Za-z0-9-]{1,39}/[A-Za-z0-9._-]{1,100}/releases/download/"
+                            r"[A-Za-z0-9._-]{1,100}/[A-Za-z0-9._-]{1,100}$")
+ASSET_HOSTS = {"objects.githubusercontent.com", "release-assets.githubusercontent.com"}
 USER = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 LICENCE = "CC BY-NC 4.0"
@@ -87,8 +93,36 @@ def is_stale(claim: dict, today: dt.date | None = None) -> bool:
     return claim["since"] is not None and (today - claim["since"]).days > CLAIM_DAYS
 
 
-def parse_submission(data: dict, name: str = "submission") -> dict:
-    """Validate one submission JSON. Raises ValueError with every problem found."""
+def url_allowed(url: str, allow_file: bool = False) -> bool:
+    """A submission's canvas URL: a GitHub release download over https (or, for the dry run only, a local file)."""
+    u = str(url)
+    if allow_file and u.startswith("file://"):
+        return True
+    parts = urlsplit(u)
+    if parts.scheme != "https" or parts.username or parts.password or parts.port:
+        return False
+    return bool(GITHUB_RELEASE.match(u)) or parts.hostname in ASSET_HOSTS
+
+
+def known_versions() -> set[str]:
+    from paint.config import settings
+
+    return set(settings()["versions"])
+
+
+def inside(path: Path, base: Path = PAINT_WORK) -> Path:
+    """`path`, after checking it resolves inside `base` (no ../ or absolute names from untrusted input)."""
+    p, b = Path(path).resolve(), Path(base).resolve()
+    if p != b and b not in p.parents:
+        raise ValueError(f"{path} is outside {base}")
+    return p
+
+
+def parse_submission(data: dict, name: str = "submission", versions: set[str] | None = None,
+                     allow_file: bool = False, file_name: str | None = None) -> dict:
+    """Validate one submission JSON. Raises ValueError with every problem found. `file_name`, when given, must be
+    the name this submission has to have (<block>-<version>.json). `allow_file` is for the CPU dry run only."""
+    versions = known_versions() if versions is None else versions
     if not isinstance(data, dict):
         raise ValueError(f"{name}: not an object")
     p = []
@@ -102,8 +136,10 @@ def parse_submission(data: dict, name: str = "submission") -> dict:
         p.append(f"block {data['block']!r} is not like b03")
     if "by" in data and not USER.match(str(data["by"])):
         p.append(f"by {data['by']!r} is not a GitHub user name")
-    if "url" in data and not re.match(r"^(https://|file://)", str(data["url"])):
-        p.append("url must be https:// (file:// only in the dry run)")
+    if "version" in data and data["version"] not in versions:
+        p.append(f"version {data['version']!r} is not one of {sorted(versions)}")
+    if "url" in data and not url_allowed(data["url"], allow_file):
+        p.append("url must be an https GitHub release download (https://github.com/<user>/<repo>/releases/download/...)")
     if "sha256" in data and not SHA256.match(str(data["sha256"])):
         p.append("sha256 must be 64 lower-case hex digits")
     for f in ("bytes", "width", "height", "size"):
@@ -117,8 +153,11 @@ def parse_submission(data: dict, name: str = "submission") -> dict:
     if "agree" in data and data["agree"] is not True:
         p.append("agree must be true: painted blocks are accepted under the art licence")
     if "neighbours" in data and not (isinstance(data["neighbours"], dict)
-                                     and all(SHA256.match(str(v)) for v in data["neighbours"].values())):
+                                     and all(BLOCK_ID.match(str(k)) and SHA256.match(str(v))
+                                             for k, v in data["neighbours"].items())):
         p.append("neighbours must map block ids to the sha256 of the canvas held")
+    if file_name is not None and not p and file_name != submission_name(data["block"], data["version"]):
+        p.append(f"the file must be named {submission_name(data['block'], data['version'])}, not {file_name}")
     if p:
         raise ValueError(f"{name}: " + "; ".join(p))
     return data
@@ -132,8 +171,6 @@ def load_submissions(folder: Path = SUBMISSIONS) -> dict[tuple[str, str], dict]:
     """{(block, version): submission} for every submission JSON in the folder (in main = accepted)."""
     out = {}
     for f in sorted(folder.glob("*.json")) if folder.exists() else []:
-        s = parse_submission(json.loads(f.read_text(encoding="utf-8")), f.name)
-        if f.name != submission_name(s["block"], s["version"]):
-            raise ValueError(f"{f.name}: must be named {submission_name(s['block'], s['version'])}")
+        s = parse_submission(json.loads(f.read_text(encoding="utf-8")), f.name, file_name=f.name)
         out[(s["block"], s["version"])] = s
     return out

@@ -128,8 +128,9 @@ environment:
 The key is read from the environment only and sent to RunPod's API in a request header. The project never asks
 for it and never has a shared key: you pay for your own GPU time.
 
-If the style weights are not on the Hugging Face Hub yet, or you are offline, put the `.safetensors` files in a
-folder and set `PAINT_LORA_DIR` to it.
+The style and light LoRAs are on the Hugging Face Hub at
+[amirdaraee/isometric-ink-style](https://huggingface.co/amirdaraee/isometric-ink-style) and download on first use.
+To work offline, put the `.safetensors` files in a folder and set `PAINT_LORA_DIR` to it.
 
 ## Try it without a GPU: the dry run
 
@@ -200,9 +201,12 @@ adds a small JSON file that says where it is, its checksum and how it was painte
 This writes `pipeline/paint/submissions/b03-day.json` (checksum, size, block position, the neighbours it held,
 model and settings, time and peak GPU memory) and, with `--upload`, creates a release `paint-b03-day` on your
 fork with the canvas as `b03-day.png` (using your own `gh` login). Without `--upload` it prints the `gh` command;
-with `--url` you can host the file anywhere that serves it over https.
+with `--url` you can point at another GitHub release (only `https://github.com/<user>/<repo>/releases/download/...`
+URLs are accepted).
 
-Then open a pull request that adds only that JSON file, and link your issue. The `pipeline` check validates it.
+Then open a pull request that adds only that JSON file, and link your issue. The `pipeline` check validates it,
+and the `repo-checks` job fails a submission pull request that changes anything other than
+`pipeline/paint/submissions/*.json`: send code or prompt changes in a separate pull request.
 By submitting you confirm that you painted it with this pipeline and offer it under the art licence (the
 submission says `"licence": "CC BY-NC 4.0", "agree": true`).
 
@@ -245,9 +249,26 @@ Put the canvas next to the render crop (`data/work/paint/b03/src.png`) and check
 
 ## Review (maintainers)
 
-    .venv/bin/python paint/review.py check pipeline/paint/submissions/b03-day.json   # in the PR's checkout
+**Run the review tools only from a trusted checkout of `main`, never from the pull request's branch.** A pull
+request is someone else's code: checking it out and running `paint/review.py` (or any script, or `pytest`) from it
+would run whatever it contains on your machine. Copy in only the submission JSON, which the tools treat as
+untrusted data:
+
+    git checkout main && git pull
+    git fetch origin pull/<PR number>/head:pr-<PR number>
+    git show pr-<PR number>:pipeline/paint/submissions/b03-day.json > /tmp/b03-day.json
+    cd pipeline
+    .venv/bin/python paint/review.py check /tmp/b03-day.json                         # download, verify, check
     .venv/bin/python paint/review.py fetch && .venv/bin/python paint/review.py tiles  # after merging
     .venv/bin/python paint/review.py publish b03 --yes                               # copy to this repo's release
+
+First confirm that the pull request changes only `pipeline/paint/submissions/*.json` (the `repo-checks` job
+fails it otherwise; CI runs on `pull_request`, with a read-only token and no secrets, never
+`pull_request_target`).
+
+What the tools accept from a submission: a block id of the current plan (`b` and two digits), a known version,
+a file named `<block>-<version>.json`, and a canvas URL that is an https GitHub release download (redirects
+followed only to GitHub's asset hosts). Every file they write must resolve inside `data/work/paint/`.
 
 `check` downloads the canvas (refusing anything over 120 MB or with the wrong checksum) and checks:
 
@@ -274,7 +295,7 @@ URL it prints into the submission JSON in a follow-up commit. When the painted t
 |---|---|
 | Base model, Qwen-Image-Edit-2511 (Qwen team, Alibaba) | Apache-2.0 |
 | Lightning LoRA (lightx2v) | Apache-2.0 (see its model card) |
-| Style and light LoRAs (`amirdaraee/isometric-ink-style`) | CC BY-NC 4.0 |
+| Style and light LoRAs ([amirdaraee/isometric-ink-style](https://huggingface.co/amirdaraee/isometric-ink-style)) | CC BY-NC 4.0 |
 | Painted blocks and the painted map | CC BY-NC 4.0 ([LICENSE-ART.md](../LICENSE-ART.md)) |
 | The painting code (`pipeline/paint/`) | MIT ([LICENSE](../LICENSE)) |
 

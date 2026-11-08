@@ -85,9 +85,10 @@ def dry_run(out: Path) -> int:
 
     subs = out / "submissions"
     subs.mkdir(exist_ok=True)
-    sub0 = make_submission(plan, b0["id"], "day", "dry-run", c0.resolve().as_uri(), root)
+    sub0 = make_submission(plan, b0["id"], "day", "dry-run", c0.resolve().as_uri(), root, allow_file=True)
     (subs / registry.submission_name(b0["id"], "day")).write_text(json.dumps(sub0, indent=1))
-    got = blocks.download(sub0["url"], out / "review" / f"{b0['id']}-day.png", sub0["sha256"])
+    got = blocks.download(sub0["url"], out / "review" / f"{b0['id']}-day.png", sub0["sha256"], allow_file=True,
+                          base=out)
     rep0 = check_canvas(plan, b0["id"], "day", got, GRID, root, sub0)
     print("    ", "PASS" if rep0["ok"] else "FAIL", rep0.get("position"), rep0["problems"] or "", rep0["notes"] or "")
 
@@ -95,7 +96,7 @@ def dry_run(out: Path) -> int:
     blocks.prepare(plan, b1["id"], "day", GRID, root)
     _job_settings(root / b1["id"])
     c1 = paint_block(root / b1["id"], "day", StubModel(), steps=8, cfg=1.0, log=lambda m: print("   ", m))
-    sub1 = make_submission(plan, b1["id"], "day", "dry-run", c1.resolve().as_uri(), root)
+    sub1 = make_submission(plan, b1["id"], "day", "dry-run", c1.resolve().as_uri(), root, allow_file=True)
     rep1 = check_canvas(plan, b1["id"], "day", c1, GRID, root, sub1)
     print("    ", "PASS" if rep1["ok"] else "FAIL", f"held dE {rep1.get('held_dE')}",
           f"seams {len(rep1.get('seams', {}).get('bad', []))}/{rep1.get('seams', {}).get('chunks')}",

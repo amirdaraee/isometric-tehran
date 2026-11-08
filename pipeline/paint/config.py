@@ -6,8 +6,7 @@ cache (HF_HOME). Environment overrides, so a fork can point at its own copies wi
   PAINT_MODEL_REPO   base model repo        (default Qwen/Qwen-Image-Edit-2511)
   PAINT_STYLE_REPO   style LoRA repo        (default amirdaraee/isometric-ink-style)
   PAINT_LIGHT_REPO   light LoRA repo        (default the same repo)
-  PAINT_LORA_DIR     a local folder holding the LoRA files: used instead of the Hub (offline, or before they are
-                     published)
+  PAINT_LORA_DIR     a local folder holding the LoRA files: used instead of the Hub (offline)
 """
 from __future__ import annotations
 

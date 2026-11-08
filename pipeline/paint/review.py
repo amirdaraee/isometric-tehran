@@ -1,7 +1,8 @@
 """For the maintainer: fetch submitted blocks, check them, blend the accepted ones into the map and rebuild tiles.
 
-  python paint/review.py check pipeline/paint/submissions/b03-day.json   download, verify and check one submission
-                                                                         (from a pull request's checkout)
+  python paint/review.py check /tmp/b03-day.json   download, verify and check one submission. Run it from a
+                                                   trusted checkout of main, with only the PR's JSON copied in:
+                                                   git show pr-12:pipeline/paint/submissions/b03-day.json > /tmp/b03-day.json
   python paint/review.py fetch [--version day]     download every accepted canvas of a version
   python paint/review.py blend [--version day]     data/work/tiles/painted.json (day) or patches_<v>.json
   python paint/review.py tiles [--version day]     rebuild the tiles with the painted blocks (build_tiles.py or
@@ -128,15 +129,17 @@ def _magenta(rgb):
 
 
 def cmd_check(args) -> int:
-    sub = registry.parse_submission(json.loads(Path(args.submission).read_text(encoding="utf-8")), args.submission)
+    f = Path(args.submission)
+    sub = registry.parse_submission(json.loads(f.read_text(encoding="utf-8")), f.name, file_name=f.name)
     plan = blocks.load_plan()
+    blocks.get(plan, sub["block"])  # a block of the current plan
     grid = blocks.grid_from_settings()
     bid, v = sub["block"], sub["version"]
     # neighbours as accepted in main, then the submitted canvas into the review folder
     blocks.fetch(plan, bid, v)
     if v != "day":
         blocks.fetch(plan, bid, "day", include_self=True)
-    dest = config.PAINT_WORK / "review" / f"{bid}-{v}.png"
+    dest = registry.inside(config.PAINT_WORK / "review" / f"{bid}-{v}.png")
     max_b = int(config.settings()["release"]["maxCanvasMB"] * 1e6)
     if sub["bytes"] > max_b:
         raise SystemExit(f"{sub['bytes'] / 1e6:.0f} MB is over the {max_b / 1e6:.0f} MB limit")
@@ -203,7 +206,7 @@ def cmd_publish(args) -> int:
     sub = subs.get((args.block, args.version))
     if not sub:
         raise SystemExit(f"no accepted submission for {args.block} {args.version}")
-    src = blocks.canvas_path(args.block, args.version)
+    src = registry.inside(blocks.canvas_path(args.block, args.version))
     if not src.exists() or blocks.sha256(src) != sub["sha256"]:
         raise SystemExit(f"{src} missing or not the accepted canvas: review.py fetch --version {args.version}")
     tag = config.settings()["release"]["tag"]

@@ -340,13 +340,32 @@ def prepare(plan: dict, bid: str, version: str = "day", grid: Grid | None = None
     return d
 
 
-def download(url: str, dest: Path, sha: str | None = None, max_bytes: int | None = None) -> Path:
-    """Download (https or file) to dest, checking the size limit and the checksum."""
+class _ReleaseRedirects(urllib.request.HTTPRedirectHandler):
+    """Follow a GitHub release redirect only to GitHub's https asset hosts."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if not registry.url_allowed(newurl):
+            raise SystemExit(f"refusing a redirect to {newurl}")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def download(url: str, dest: Path, sha: str | None = None, max_bytes: int | None = None, allow_file: bool = False,
+             base: Path | None = None) -> Path:
+    """Download a GitHub release asset (https only; a local file only with allow_file, for the dry run) to dest,
+    which must lie inside `base` (default data/work/paint), checking the size limit and the checksum."""
+    if not registry.url_allowed(url, allow_file):
+        raise SystemExit(f"{url}: not an https GitHub release download, refused")
+    dest = registry.inside(dest, base or config.PAINT_WORK)
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
     h = hashlib.sha256()
     n = 0
-    with urllib.request.urlopen(url, timeout=60) as r, open(tmp, "wb") as f:  # noqa: S310 (https/file only)
+    handlers = [_ReleaseRedirects()] + ([urllib.request.FileHandler()] if allow_file else [])
+    opener = urllib.request.OpenerDirector()
+    for hd in (urllib.request.HTTPSHandler(), urllib.request.HTTPErrorProcessor(),
+               urllib.request.HTTPDefaultErrorHandler(), *handlers):
+        opener.add_handler(hd)
+    with opener.open(url, timeout=60) as r, open(tmp, "wb") as f:
         for chunk in iter(lambda: r.read(1 << 20), b""):
             n += len(chunk)
             if max_bytes and n > max_bytes:
@@ -374,12 +393,12 @@ def fetch(plan: dict, bid: str, version: str, include_self: bool = False, root: 
         s = subs.get((o["id"], version))
         if not s:
             continue
-        dest = canvas_path(o["id"], version, root)
+        dest = registry.inside(canvas_path(o["id"], version, root), root)
         if dest.exists() and sha256(dest) == s["sha256"]:
             got.append(o["id"])
             continue
         print(f"downloading {o['id']} {version} from {s['url']}", flush=True)
-        download(s["url"], dest, s["sha256"], max_b)
+        download(s["url"], dest, s["sha256"], max_b, base=root)
         got.append(o["id"])
     print(f"{bid} {version}: have {', '.join(got) or 'nothing'}")
     return got

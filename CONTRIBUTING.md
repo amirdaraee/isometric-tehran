@@ -74,7 +74,8 @@ your own RunPod account (about $1 to $1.50 a block). Try the dry run first; it n
 
 Then claim a ready block with a [Paint a block](https://github.com/amirdaraee/isometric-tehran/issues/new?template=paint-block.yml)
 issue, paint it with `paint/paint.py run`, and submit it with `paint/paint.py submit`: the canvas goes in a
-release on your fork, and the pull request adds only a small JSON file. [docs/PAINTING.md](docs/PAINTING.md) has
+release on your fork, and the pull request adds only a small JSON file (a submission pull request may change
+nothing else; CI checks this). [docs/PAINTING.md](docs/PAINTING.md) has
 the hardware, cost, setup, prompts, how quality is judged and the licences. Painted blocks are accepted under
 CC BY-NC 4.0. Improving the landmark hints in `pipeline/paint/prompts/landmarks.json` needs no GPU at all.
 

@@ -22,7 +22,8 @@ order is.
       checks (position, held pixels, seams) and feathered blending; local GPU (24, 48 or 80 GB) or a RunPod pod on
       the painter's own account; a CPU dry run that CI also runs.
 - [x] Guides for the painter: the layout map from the kinds pass. Still to do: a line pass (edges and windows).
-- [ ] Publish the style and light LoRAs on Hugging Face (CC BY-NC 4.0) under the name in `paint.json`.
+- [x] The style and light LoRAs published on Hugging Face
+      ([amirdaraee/isometric-ink-style](https://huggingface.co/amirdaraee/isometric-ink-style), CC BY-NC 4.0).
 - [ ] Paint the pilot block b00 (Golestan Palace and the Arg) in the inked style of Isometric Luxembourg, reusing
       its style model first; measure time and peak memory; then decide whether Tehran needs its own style training
       (budget approved before any GPU time).
