@@ -1,0 +1,12 @@
+{
+  "version": 0.6,
+  "elements": [
+    {"type": "node", "id": 1, "lat": 35.6797, "lon": 51.4203, "tags": {"tourism": "museum", "name": "کاخ گلستان", "name:en": "Golestan Palace"}},
+    {"type": "way", "id": 10, "tags": {"building": "yes", "building:levels": "3"},
+     "geometry": [{"lat": 35.6800, "lon": 51.4200}, {"lat": 35.6800, "lon": 51.4202}, {"lat": 35.6802, "lon": 51.4202}, {"lat": 35.6802, "lon": 51.4200}, {"lat": 35.6800, "lon": 51.4200}]},
+    {"type": "way", "id": 11, "tags": {"highway": "residential", "name": "کوچه"},
+     "geometry": [{"lat": 35.6790, "lon": 51.4190}, {"lat": 35.6795, "lon": 51.4210}]},
+    {"type": "relation", "id": 20, "tags": {"type": "multipolygon", "leisure": "park", "name": "Park"},
+     "members": [{"type": "way", "role": "outer", "geometry": [{"lat": 35.683, "lon": 51.414}, {"lat": 35.683, "lon": 51.416}, {"lat": 35.685, "lon": 51.416}, {"lat": 35.685, "lon": 51.414}, {"lat": 35.683, "lon": 51.414}]}]}
+  ]
+}

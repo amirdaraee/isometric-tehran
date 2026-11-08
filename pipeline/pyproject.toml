@@ -1,0 +1,37 @@
+[project]
+name = "isometric-tehran-pipeline"
+version = "0.1.0"
+description = "Data, render and tile pipeline for Isometric Tehran"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# Core: what the render and the tile build need.
+dependencies = [
+  "rasterio",
+  "pyarrow",
+  "numpy",
+  "pillow",
+  "pyproj",
+  "shapely",
+  "scipy",
+  "opencv-python-headless",
+  "moderngl",
+  "pyvips[binary]",
+]
+
+[project.optional-dependencies]
+# Downloads (fetch_data.py): Overture buildings and the Copernicus DEM window.
+fetch = ["overturemaps"]
+# Checks run in CI on small fixtures (no downloads, no GPU).
+dev = ["pytest", "ruff"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "E731", "E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
