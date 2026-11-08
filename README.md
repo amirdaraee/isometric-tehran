@@ -25,8 +25,10 @@ The next step paints it as an inked illustration, in the style of
 
 - **The historic core** (bbox 35.668–35.700 N, 51.405–51.440 E, about 3.2 × 3.6 km), rendered at 0.25 m per
   pixel: 11,954 buildings, 11,415 trees, terrain, streets, parks and pools.
-- **Two languages.** Place labels show both names ("Golestan Palace · کاخ گلستان"). The interface switches between
-  English and Persian (right to left) with the فا / EN button, or `?lang=fa`. Search matches English and Persian
+- **Two languages.** Place labels on the map are in the interface language; the tooltip, the picked place and its
+  card show both names ("Golestan Palace · کاخ گلستان"). Far out only the main landmarks and districts are named;
+  more places come in as you zoom, smaller ones as dots first, and a label never covers a more important one. The
+  interface switches between English and Persian (right to left) with the فا / EN button, or `?lang=fa`. Search matches English and Persian
   names, including Arabic letter forms and names typed without the zero-width joiner.
 - **Landmarks:** 32 pins with cards, from Wikidata and Wikipedia, each with its sources.
 - **Time of day:** a slider and a "Live" button on Tehran's clock. Until night and golden hour are painted, they are
