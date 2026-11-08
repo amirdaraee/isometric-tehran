@@ -1,0 +1,34 @@
+{
+ "comment": "Painter settings (docs/PAINTING.md). The city itself (bbox, opening place) comes from city.json. Weights are downloaded from the Hugging Face Hub; override a repo with the env vars PAINT_STYLE_REPO, PAINT_LIGHT_REPO, PAINT_MODEL_REPO.",
+ "model": {"repo": "Qwen/Qwen-Image-Edit-2511", "revision": "main", "licence": "Apache-2.0"},
+ "loras": {
+  "style": {"repo": "amirdaraee/isometric-ink-style", "file": "isometric-ink-v2.safetensors", "licence": "CC BY-NC 4.0",
+            "note": "the inked style of Isometric Luxembourg (style v2, step 2000)"},
+  "light": {"repo": "amirdaraee/isometric-ink-style", "file": "isometric-light-v1.safetensors", "licence": "CC BY-NC 4.0",
+            "note": "turns a painted day canvas into night or golden hour"},
+  "lightning": {"repo": "lightx2v/Qwen-Image-Edit-2511-Lightning",
+                "file": "Qwen-Image-Edit-2511-Lightning-8steps-V1.0-bf16.safetensors", "licence": "Apache-2.0",
+                "note": "8-step distillation: about 3x faster, chosen for Luxembourg's day map"}
+ },
+ "trigger": "<isometric luxembourg ink>",
+ "blocks": {"size": 4800, "overlap": 1200, "minFill": 0.03},
+ "scale": {"srcCell": 600, "modelCell": 512, "window": 1024},
+ "band": 64,
+ "seed": 1867,
+ "versions": {
+  "day": {"lora": "style", "prompt": "day.txt", "steps": 8, "cfg": 1.0, "lightning": true, "mu": 1.0986, "layout": true},
+  "golden": {"lora": "light", "prompt": "golden.txt", "steps": 15, "cfg": 3.0, "from": "day"},
+  "night": {"lora": "light", "prompt": "night.txt", "steps": 15, "cfg": 3.0, "from": "day"}
+ },
+ "release": {"tag": "paint-blocks", "maxCanvasMB": 120},
+ "water": {"lab": null, "comment": "target pool colour, OpenCV CIELAB (L, a, b in 0-255); set after the pilot block"},
+ "runpod": {
+  "image": "runpod/pytorch:1.0.3-cu1281-torch291-ubuntu2404",
+  "gpuTypes": ["NVIDIA H100 80GB HBM3", "NVIDIA H100 NVL", "NVIDIA H100 PCIe", "NVIDIA A100-SXM4-80GB",
+               "NVIDIA A100 80GB PCIe", "NVIDIA H200"],
+  "cloudTypes": ["COMMUNITY", "SECURE"],
+  "containerDiskGb": 150,
+  "setupMinutes": 15
+ },
+ "review": {"seamDeltaE": 8.0, "feather": 600}
+}

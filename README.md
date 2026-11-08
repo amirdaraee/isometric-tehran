@@ -47,10 +47,15 @@ after cloning. To rebuild them from the data, see [How the map is made](#how-the
 
 ## How to help
 
-Contributions are welcome: translations, landmarks, data fixes, viewer features and, later, the painting.
+Contributions are welcome: translations, landmarks, data fixes, viewer features and the painting.
 [CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the checks, how to add a landmark or a translation, and
 lists good first issues. Every change goes through a pull request with a review. Please read the
 [Code of Conduct](CODE_OF_CONDUCT.md); report security problems as described in [SECURITY.md](SECURITY.md).
+
+**Paint a block.** The map is painted block by block with an open model and the inked style of Isometric
+Luxembourg, and anyone with a 24 GB GPU, or a few dollars of GPU time on their own RunPod account, can paint one.
+Try `python paint/paint.py dry-run` (no GPU needed), then see [docs/PAINTING.md](docs/PAINTING.md) and open a
+[Paint a block](https://github.com/amirdaraee/isometric-tehran/issues/new?template=paint-block.yml) issue.
 
 The easiest way to improve the map is to improve OpenStreetMap: building heights (`height`, `building:levels`)
 and English and Persian names (`name:en`, `name:fa`) in central Tehran flow straight into the next render.
@@ -79,6 +84,10 @@ and time zone. The pipeline is in `pipeline/` (Python 3.11+):
    a low sun from the west-south-west with shadow mapping, contact shadows at wall feet and thin ink lines where
    surfaces meet. A second pass records what is where (ground, road, water, wall, roof, tree) for the water effect
    and, later, as a guide for the painter.
+
+5. **Paint:** the render is painted block by block (4800 px blocks, overlapping by 1200 px, outward from Golestan
+   Palace) with Qwen-Image-Edit-2511 and the inked style LoRA, each block holding its finished neighbours so they
+   meet without seams. See [docs/PAINTING.md](docs/PAINTING.md).
 
 [docs/DATA.md](docs/DATA.md) lists every source with its date and licence.
 
@@ -127,4 +136,5 @@ release assets or object storage: build with `TILES_URL=https://…` and the vie
 ## Licence
 
 Code: [MIT](LICENSE). Art (the rendered and, later, painted map and any drawings): [CC BY-NC 4.0](LICENSE-ART.md).
-Data keeps its own licences, listed above.
+Data keeps its own licences, listed above. Painting uses Qwen-Image-Edit-2511 (Apache-2.0) and the project's style
+LoRAs (CC BY-NC 4.0); see [docs/PAINTING.md](docs/PAINTING.md#licences).

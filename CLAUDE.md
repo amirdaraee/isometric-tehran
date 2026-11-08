@@ -17,6 +17,11 @@ is and CONTRIBUTING.md for the full rules; this is the short version.
 - `pipeline/`: Python 3.11+. `common.py` (config, projection, camera), `fetch_data.py`, `osm.py`, `heights.py`,
   `build_scene.py`, `render.py`, `build_tiles.py`, `build_places.py`, `build_water_mask.py`, `build_clouds.py`;
   `landmarks.json` is the curated landmark list; tests in `pipeline/tests/` with fixtures.
+- `pipeline/paint/`: the painter (docs/PAINTING.md). `paint.json` (model, LoRA repos, block size, versions),
+  `blocks.py` (plan, status, prepare), `paint.py` (estimate, run local or RunPod, submit, dry-run), `painter.py`
+  + `md_core.py` (whole-block painting, numpy) + `qwen.py` (the real model, torch) + `stub.py` (CPU stand-in),
+  `review.py` (maintainer checks, blend, tiles), `claims.json` and `submissions/` (changed only by pull request),
+  `prompts/`. `build_variant_tiles.py` builds the golden and night pyramids.
 - `scripts/check_repo.py`: size, raw-data and secret checks.
 - `data/`: raw downloads and work files. Never committed.
 
@@ -30,6 +35,14 @@ is and CONTRIBUTING.md for the full rules; this is the short version.
 
 Rebuild the map: `fetch_data.py all`, `build_scene.py`, `render.py`, `build_tiles.py`, `build_places.py`,
 `build_water_mask.py`, `build_clouds.py mask` (all from `pipeline/` with `.venv/bin/python`).
+
+Painting: `paint/blocks.py plan|status`, `paint/paint.py dry-run` (CPU, no GPU or network), `paint/paint.py
+estimate|run|submit`, `paint/review.py check|fetch|blend|tiles|publish`. torch and diffusers are only in the
+`paint` extra: nothing in CI or the tests may import them (`qwen.py` is imported only for a real run).
+Submissions are untrusted data: review them from a checkout of `main` with only the JSON copied in (`git show
+<pr-head>:pipeline/paint/submissions/<x>.json > /tmp/<x>.json`), never by running code from a pull request's
+branch. A submission pull request changes only `pipeline/paint/submissions/*.json`
+(`scripts/check_submission_pr.py`, in `repo-checks`). Keep CI on `pull_request`, never `pull_request_target`.
 
 ## Tests to run before a pull request
 
@@ -54,7 +67,9 @@ modules (no DOM, no `import.meta.env`). Pipeline tests must not need downloads o
 - Download only the bbox in `city.json`. Record every source, date and licence in `fetch_data.py` and
   `docs/DATA.md`, and credit it in the README and the About panel.
 - Only open data that allows redistribution. Landmark facts only from Wikidata and Wikipedia, with links.
-- No paid services, no GPU or cloud jobs (RunPod, Modal or others) without the owner's approval first.
+- No paid services, no GPU or cloud jobs (RunPod, Modal or others) without the owner's approval first. The
+  painter's paid path (`paint.py run --backend runpod`) prints its cost and needs `--yes`; keep it that way, and
+  keep it on the user's own `RUNPOD_API_KEY` from the environment (never a key in a file).
 - Base art (for painting): nothing that moves, still water, summer trees.
 
 ## What not to commit
