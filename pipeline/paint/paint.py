@@ -38,7 +38,7 @@ PIPE = Path(__file__).resolve().parent.parent
 GPUS = {
     "H200":         {"vram": 141, "memory": "full",    "s": 0.9,  "measured": True},
     "H100":         {"vram": 80,  "memory": "full",    "s": 1.2,  "measured": False},
-    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.0,  "measured": False},
+    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.32, "measured": True},  # b00, RunPod, 63.6 GB peak
     "L40S":         {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX 6000 Ada": {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX A6000":    {"vram": 48,  "memory": "offload", "s": 5.0,  "measured": False},

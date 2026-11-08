@@ -84,17 +84,19 @@ parameter counts), so keep about 80 GB of disk free for the Hugging Face cache a
 | Light LoRA, 15 steps, guidance 3 (versions) | 1.0 to 1.3 | 2 to 11 min (partly empty blocks) | $0.17 to $0.73 on RunPod at $3.99/h |
 
 Peak GPU memory was not logged in Luxembourg; the painter now records it (`peak_gpu_gb` in the status file and
-the submission), so contributors' runs will fill this in.
+the submission). **Measured on Tehran's b00** (RunPod A100 80GB PCIe, `full`): 2.32 s per window, 9.6 min of
+painting for 244 model calls, 63.6 GB peak GPU memory; about 1 minute of setup and 3 minutes to download and load
+the model, so 13 minutes from pod start to canvas.
 
 **Estimated for a Tehran block** (4800 px; 25 or 36 windows per step, about 244 model calls for a full block at
-8 steps, fewer where neighbours are held or the map is empty). Only the H200 speed is measured; every other row is
+8 steps, fewer where neighbours are held or the map is empty). The H200 and A100 speeds are measured; every other row is
 an estimate from relative GPU speed, including about 4 minutes to load the model:
 
 | GPU | Profile | Minutes per day block |
 |---|---|---|
 | H200 | full | about 8 (speed measured) |
 | H100 80GB | full | about 9 |
-| A100 80GB | full | about 12 |
+| A100 80GB | full | about 13 (speed measured) |
 | L40S, RTX 6000 Ada | offload | about 18 |
 | RTX A6000 | offload | about 24 |
 | RTX 4090 | nf4 | about 28 |
