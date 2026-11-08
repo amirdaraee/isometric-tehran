@@ -34,12 +34,21 @@ kbd { padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; color
 
 .pins { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
 .pin { position: absolute; left: 0; top: 0; padding: 0; border: 0; background: none; pointer-events: auto; will-change: transform; }
-.pin span { position: absolute; left: 0; bottom: 18px; transform: translateX(-50%); padding: 4px 9px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); white-space: nowrap; font-size: 12px; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.pin span { position: absolute; left: 0; bottom: 18px; transform: translateX(-50%); padding: 4px 9px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .pin i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--pin, var(--ink)); border: 2px solid #101828; }
 .pin i::before { content: ""; position: absolute; left: 1px; bottom: 8px; width: 2px; height: 11px; background: rgba(16, 24, 40, 0.85); }
 .pins.many .pin span { background: rgba(16, 24, 40, 0.9); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .pin:hover span { background: #1d2a44; }
-.pin.on span { background: var(--red); border-color: var(--red); color: #fff; }
+.pin.on span { background: var(--red); border-color: var(--red); color: #fff; max-width: 320px; }
+/* minor places: a small dot; the name shows on hover or focus */
+.pin.dot i { left: -4px; top: -4px; width: 8px; height: 8px; border-width: 1.5px; }
+.pin.dot i::before { left: -9px; top: -9px; bottom: auto; width: 24px; height: 24px; background: none; } /* a bigger hit area */
+.pin.dot span { display: none; bottom: 10px; }
+.pin.dot:hover span, .pin.dot:focus-visible span { display: block; z-index: 1; }
+/* a label coming in (zoom, or the edge of the screen) fades in; its position never animates */
+.pin, .quarter { animation: label-in .18s ease-out; }
+@keyframes label-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pin, .quarter { animation: none; } }
 .cat-landmark { --pin: #ffd166; } .cat-culture { --pin: #f28482; } .cat-history { --pin: #c9a227; } .cat-bridge { --pin: #7bdff2; } .cat-park { --pin: #3ddc84; } .cat-square { --pin: #f4f1ea; } .cat-transport { --pin: #a0c4ff; } .cat-viewpoint { --pin: #7bdff2; }
 .cat-church, .cat-religion { --pin: #e9c46a; } .cat-government { --pin: #b8c0ff; } .cat-fortification { --pin: #c9a227; } .cat-eu-institution { --pin: #4d8dff; } .cat-education { --pin: #cdb4db; } .cat-sport { --pin: #90e0ef; } .cat-modern { --pin: #e0e1dd; } .cat-museum { --pin: #f28482; }
 .quarter { position: absolute; left: 0; top: 0; }
@@ -79,7 +88,9 @@ kbd { padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; color
 @media (max-width: 640px) { kbd { display: none; } .tools .glass { display: none; } }
 
 /* Drawn layers (streets, traffic) sit between the map and the pins. */
-.overlay { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+/* the same box as the map (inset 0, not 100vw x 100vh: on phones 100vh is taller than the screen with the
+   browser bar showing, and the canvas would be stretched off the map) */
+.overlay { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 .layers { position: fixed; left: 16px; bottom: calc(44px + env(safe-area-inset-bottom)); display: flex; gap: 4px; padding: 4px; border-radius: 999px; z-index: 4; }
 .layers button { border: 0; background: transparent; color: inherit; font: 600 13px/1 system-ui, sans-serif; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
 .layers button.on { background: #1f9e93; color: #fff; }
