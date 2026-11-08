@@ -176,6 +176,13 @@ On a rented GPU on your RunPod account (paid):
     .venv/bin/python paint/paint.py run b03 --backend runpod                # prints the cost, rents nothing
     .venv/bin/python paint/paint.py run b03 --backend runpod --yes          # rents one pod and paints
     #   --max-price 3.0   the most you will pay per hour (default $3.00); dearer pods are refused
+    #   --gpu 'NVIDIA A100 80GB PCIe'   GPU types to try, in order (repeat it; default paint.json runpod.gpuTypes)
+    .venv/bin/python paint/paint.py run b05 b07 --backend runpod --yes --max-cost 2   # several blocks, one pod
+
+Several blocks in one `run` are painted in order on **one pod**: the weights are downloaded once (3 to 9 minutes
+on RunPod), and each block is prepared after the ones before it came back, so it holds them. Each block moves the
+pod's deadline to its own, `--max-cost` refuses to start a block that could take the pod past that many dollars,
+and the session stops at the first block that fails.
 
 `run` downloads the accepted canvases of the block's neighbours (checking their checksums), writes the painter's
 inputs into `data/work/paint/b03/` (render crop, layout map, held neighbours, prompts), paints, and cleans up the
