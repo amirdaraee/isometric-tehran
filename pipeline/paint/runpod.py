@@ -190,11 +190,14 @@ def _paint(pod: Pod, block_dir: Path, version: str, painter_args: list[str], hou
     pod.ssh(f"rm -f /workspace/rc; setsid nohup bash {REMOTE}/pipeline/paint/pod_run.sh {args} "
             f"> /workspace/pod_run.out 2>&1 < /dev/null &")
     time.sleep(5)
-    if pod.ssh("pgrep -f pod_run.sh >/dev/null || test -s /workspace/rc") != 0:
+    # "[p]od_run.sh": a plain pattern would match the remote shell running this very command
+    if pod.ssh("pgrep -f '[p]od_run.sh' >/dev/null || test -s /workspace/rc") != 0:
         raise RuntimeError("pod_run.sh did not start: " + str(pod.ssh("cat /workspace/pod_run.out", capture=True)))
     print(f"painting {block_dir.name} on the pod; deadline {time.strftime('%H:%M', time.localtime(deadline))} "
           f"(cap ${hours * pod.price:.2f}). Ctrl-C deletes the pod.", flush=True)
     last = ""
+    gone = 0
+    status = f"{REMOTE}/{rel}/live_{version}/status.json"
     while True:
         time.sleep(30)
         rc = str(pod.ssh("cat /workspace/rc 2>/dev/null", capture=True)).strip()
@@ -203,6 +206,17 @@ def _paint(pod: Pod, block_dir: Path, version: str, painter_args: list[str], hou
             print(f"  [{pod.cost():.2f} $] {line}", flush=True)
             last = line
         if rc:
+            break
+        # A community pod's container can restart under us, killing pod_run.sh before it writes its exit code:
+        # don't wait for the deadline. The painter's status says whether the canvas was finished.
+        alive = pod.ssh("pgrep -f '[p]od_run.sh' >/dev/null") == 0
+        gone = 0 if alive else gone + 1
+        if gone >= 2:
+            st = str(pod.ssh(f"cat {status} 2>/dev/null", capture=True))
+            done = '"state": "done"' in st and pod.ssh(f"test -s {REMOTE}/{rel}/canvas_{version}.png") == 0
+            print("  pod_run.sh is gone without an exit code (the container restarted?): "
+                  + ("the canvas was finished, copying it back" if done else "stopping"), flush=True)
+            rc = "0" if done else "125"
             break
         if time.time() > deadline + 300:
             print("past the deadline: stopping", flush=True)
