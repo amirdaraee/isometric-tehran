@@ -14,7 +14,7 @@
     "test": "node --test \"src/**/*.test.ts\""
   },
   "dependencies": {
-    "@sentry/browser": "^10.78.0",
+    "@sentry/browser": "^11.11.0",
     "openseadragon": "^5.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
