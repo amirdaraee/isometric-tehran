@@ -1,0 +1,36 @@
+{
+  "id": "tehran",
+  "title": {
+    "en": "Isometric Tehran",
+    "fa": "تهران ایزومتریک"
+  },
+  "name": {
+    "en": "Tehran",
+    "fa": "تهران"
+  },
+  "area": {
+    "en": "the historic core",
+    "fa": "هستهٔ تاریخی"
+  },
+  "bbox": {
+    "west": 51.405,
+    "south": 35.668,
+    "east": 51.44,
+    "north": 35.7
+  },
+  "crs": "EPSG:32639",
+  "camera": {
+    "lookAzimuthDeg": 315,
+    "elevationDeg": 30,
+    "comment": "2:1 dimetric orthographic view. The camera stands south-east and looks north-west (azimuth 315, clockwise from north), 30 degrees down, as in isometric-luxembourg."
+  },
+  "metresPerPixel": 0.25,
+  "tileSize": 512,
+  "timezone": "Asia/Tehran",
+  "utcOffsetHours": 3.5,
+  "openingPlace": "golestan-palace",
+  "openingZoom": 0.55,
+  "repo": "https://github.com/amirdaraee/isometric-tehran",
+  "siteUrl": "https://amirdaraee.github.io/isometric-tehran/",
+  "basePath": "/isometric-tehran/"
+}

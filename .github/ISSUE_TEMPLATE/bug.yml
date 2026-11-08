@@ -1,0 +1,30 @@
+name: Bug
+description: Something on the map or in the viewer does not work as it should.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link to the view
+      description: Every view has its own address (#x,y,zoom). The share button copies it.
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Interface language
+      options: [English, Persian / فارسی, Both]
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Firefox 133 on Windows 11, Safari on iPhone 15...
+  - type: textarea
+    id: shot
+    attributes:
+      label: Screenshot
+      description: Paste or drag an image here, if the problem is visible.

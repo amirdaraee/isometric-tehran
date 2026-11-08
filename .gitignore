@@ -1,0 +1,42 @@
+# Raw downloads and work files (data/raw, data/work): large, re-fetched with pipeline/fetch_data.py
+/data/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+web/dist/
+
+# Secrets and local settings: never commit
+.env
+.env.*
+*.pem
+*.key
+
+# Large data formats outside the published viewer files
+*.parquet
+*.tif
+*.tiff
+*.npz
+*.gpkg
+*.pbf
+*.osm
+
+# Local-only viewer pages
+web/public/live/
+web/public/compare/
+web/public/admin/
+web/public/poc/
+
+# Tools and OS
+.DS_Store
+.idea/
+.vscode/
+.serena/
+.playwright-mcp/
+*.log

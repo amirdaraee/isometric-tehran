@@ -1,0 +1,58 @@
+# Publishes the viewer from main to GitHub Pages: https://amirdaraee.github.io/isometric-tehran/
+#
+# One-time setup in the repository: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+# The first-draft tiles are committed in web/public/tiles/, so the build carries them. When the tiles move out of
+# git, download them here before the build (or set TILES_URL to serve them from elsewhere).
+#
+# Custom domain later: set VITE_BASE to "/" and CNAME to the domain below, and set the domain in the Pages settings.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Build
+        env:
+          VITE_BASE: /isometric-tehran/
+          CNAME: ""
+        run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    name: deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

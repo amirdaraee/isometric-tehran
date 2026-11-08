@@ -1,0 +1,29 @@
+name: Landmark or translation
+description: Ask for a landmark to be added, or a name or text to be translated or corrected (English or Persian).
+labels: [content]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request?
+      options: [Add a landmark, Fix a landmark card, Interface translation, Place or street name]
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name (English and/or Persian)
+      placeholder: Masoudieh Palace · عمارت مسعودیه
+    validations:
+      required: true
+  - type: input
+    id: wikidata
+    attributes:
+      label: Wikidata item or Wikipedia article
+      description: Cards only use facts from Wikidata and Wikipedia, so a link helps a lot.
+      placeholder: https://www.wikidata.org/wiki/Q5958245
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: For a translation, the current text and your suggestion. For a landmark, why it matters.
