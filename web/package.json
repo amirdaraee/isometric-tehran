@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@sentry/browser": "^10.78.0",
-    "openseadragon": "^5.0.1",
+    "openseadragon": "^6.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@sentry/vite-plugin": "^4.9.1",
     "@types/node": "^22.10.1",
-    "@types/openseadragon": "^3.0.10",
+    "@types/openseadragon": "^6.0.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
