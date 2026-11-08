@@ -1,0 +1,32 @@
+{
+  "name": "isometric-tehran",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p . && vite build",
+    "build:pages": "VITE_BASE=/isometric-tehran/ npm run build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "node --test \"src/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@sentry/browser": "^10.78.0",
+    "openseadragon": "^5.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@sentry/vite-plugin": "^4.9.1",
+    "@types/node": "^22.10.1",
+    "@types/openseadragon": "^3.0.10",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.3"
+  }
+}
