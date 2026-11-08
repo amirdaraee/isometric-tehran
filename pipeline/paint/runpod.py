@@ -172,16 +172,26 @@ def run(block_dir: Path, version: str, painter_args: list[str], hours: float, ma
         pod.create()
         pod.wait_ssh()
         deadline = int(time.time() + hours * 3600)
-        pod.ssh(f"mkdir -p {REMOTE}/pipeline {REMOTE}/{rel}")
-        pod.rsync(str(ROOT / "city.json"), f"pod:{REMOTE}/")
-        pod.rsync(str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/")
-        pod.rsync(str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/")
-        pod.rsync(str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
-                  ["--exclude", "__pycache__", "--exclude", "submissions"])
-        pod.rsync(str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"])
+        # the image may not have rsync: install it if needed, and stop if any copy fails (no point painting then)
+        if pod.ssh(f"mkdir -p {REMOTE}/pipeline {REMOTE}/{rel} && (command -v rsync >/dev/null || "
+                   f"(apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq rsync)) "
+                   f"> /workspace/apt.log 2>&1") != 0:
+            raise RuntimeError("could not install rsync on the pod (see /workspace/apt.log there)")
+        copies = [(str(ROOT / "city.json"), f"pod:{REMOTE}/", None),
+                  (str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/", None),
+                  (str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/", None),
+                  (str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
+                   ["--exclude", "__pycache__", "--exclude", "submissions"]),
+                  (str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"])]
+        for src, dest, extra in copies:
+            if pod.rsync(src, dest, extra) != 0:
+                raise RuntimeError(f"could not copy {src} to the pod")
         args = " ".join(shlex.quote(a) for a in [str(deadline), f"{REMOTE}/{rel}", version, *painter_args])
         pod.ssh(f"rm -f /workspace/rc; setsid nohup bash {REMOTE}/pipeline/paint/pod_run.sh {args} "
                 f"> /workspace/pod_run.out 2>&1 < /dev/null &")
+        time.sleep(5)
+        if pod.ssh("pgrep -f pod_run.sh >/dev/null || test -s /workspace/rc") != 0:
+            raise RuntimeError("pod_run.sh did not start: " + str(pod.ssh("cat /workspace/pod_run.out", capture=True)))
         print(f"painting on the pod; deadline {time.strftime('%H:%M', time.localtime(deadline))} "
               f"(cap ${hours * pod.price:.2f}). Ctrl-C deletes the pod.", flush=True)
         last = ""
