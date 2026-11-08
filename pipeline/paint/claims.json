@@ -1,0 +1,4 @@
+{
+ "comment": "Who is painting which block. Add yourself with a pull request (or ask on your 'Paint a block' issue and the maintainer adds you). Fields: block, version (day, golden, night; default day), by (GitHub user), since (date), issue (number), note. A claim older than 14 days without a submission may be taken over. See docs/PAINTING.md.",
+ "claims": []
+}
