@@ -46,7 +46,9 @@ def api_key() -> str:
 
 def _call(method: str, path: str, body: dict | None = None) -> dict:
     req = urllib.request.Request(API + path, method=method, data=None if body is None else json.dumps(body).encode(),
-                                 headers={"Authorization": f"Bearer {api_key()}", "Content-Type": "application/json"})
+                                 headers={"Authorization": f"Bearer {api_key()}", "Content-Type": "application/json",
+                                          # RunPod's CDN refuses Python's default User-Agent (error 1010)
+                                          "User-Agent": "isometric-tehran-painter/1"})
     try:
         with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 (fixed https endpoint)
             txt = r.read().decode()
@@ -64,8 +66,8 @@ def ssh_key() -> tuple[Path, str]:
 
 
 class Pod:
-    def __init__(self, name: str, max_price: float):
-        self.name, self.max_price = name, max_price
+    def __init__(self, name: str, max_price: float, gpus: list[str] | None = None):
+        self.name, self.max_price, self.gpus = name, max_price, gpus
         self.id: str | None = None
         self.price = 0.0
         self.t0 = time.time()
@@ -76,7 +78,7 @@ class Pod:
         rp = config.settings()["runpod"]
         key, pub = ssh_key()
         last = None
-        for gpu in rp["gpuTypes"]:
+        for gpu in self.gpus or rp["gpuTypes"]:
             for cloud in rp["cloudTypes"]:
                 body = {"name": self.name, "imageName": rp["image"], "gpuTypeIds": [gpu], "gpuCount": 1,
                         "cloudType": cloud, "containerDiskInGb": rp["containerDiskGb"], "volumeInGb": 0,
@@ -160,10 +162,11 @@ class Pod:
         raise RuntimeError("the pod did not answer on SSH")
 
 
-def run(block_dir: Path, version: str, painter_args: list[str], hours: float, max_price: float) -> int:
+def run(block_dir: Path, version: str, painter_args: list[str], hours: float, max_price: float,
+        gpus: list[str] | None = None) -> int:
     """Paint one prepared block on a new pod; returns the painter's exit code (0 done, 3 paused)."""
     bid = block_dir.name
-    pod = Pod(f"isometric-tehran-{bid}-{version}", max_price)
+    pod = Pod(f"isometric-tehran-{bid}-{version}", max_price, gpus)
     rel = block_dir.resolve().relative_to(ROOT)
     try:
         pod.create()

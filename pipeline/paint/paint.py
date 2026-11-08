@@ -154,7 +154,7 @@ def cmd_run(args) -> int:
             return 1
         from paint import runpod
 
-        rc = runpod.run(d, args.version, extra, cap, args.max_price)
+        rc = runpod.run(d, args.version, extra, cap, args.max_price, args.gpu)
     if rc == 3:
         print("paused with the state saved: run the same command again to resume")
         return 3
@@ -243,6 +243,8 @@ def main(argv=None) -> int:
                    help="GPU memory profile (local; a pod always has 80 GB): full 80 GB, offload 48 GB, nf4 24 GB")
     r.add_argument("--max-price", type=float, default=3.0, help="RunPod: most you will pay per hour (USD)")
     r.add_argument("--yes", action="store_true", help="RunPod: really rent the pod (it costs money)")
+    r.add_argument("--gpu", action="append", help="RunPod: GPU type to try, in order (repeat the option; default "
+                   "paint.json runpod.gpuTypes), e.g. --gpu 'NVIDIA A100 80GB PCIe'")
     r.add_argument("--force", action="store_true", help="paint even if the block is waiting or done")
     r.add_argument("--stub", action="store_true", help=argparse.SUPPRESS)
     s = sub.add_parser("submit")
