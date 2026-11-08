@@ -1,22 +1,35 @@
 version: 2
+# Weekly, grouped, and no major versions: those need a person to read the changelog and test (open an issue for one).
 updates:
   - package-ecosystem: npm
     directory: /web
     schedule:
       interval: weekly
     groups:
-      npm-minor:
+      npm-minor-patch:
         update-types: [minor, patch]
-    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    open-pull-requests-limit: 3
 
   - package-ecosystem: pip
     directory: /pipeline
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    groups:
+      pip-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    open-pull-requests-limit: 3
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 2
