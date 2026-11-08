@@ -38,7 +38,7 @@ PIPE = Path(__file__).resolve().parent.parent
 GPUS = {
     "H200":         {"vram": 141, "memory": "full",    "s": 0.9,  "measured": True},
     "H100":         {"vram": 80,  "memory": "full",    "s": 1.2,  "measured": False},
-    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.0,  "measured": False},
+    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.32, "measured": True},  # b00, RunPod, 63.6 GB peak
     "L40S":         {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX 6000 Ada": {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX A6000":    {"vram": 48,  "memory": "offload", "s": 5.0,  "measured": False},
@@ -154,7 +154,7 @@ def cmd_run(args) -> int:
             return 1
         from paint import runpod
 
-        rc = runpod.run(d, args.version, extra, cap, args.max_price)
+        rc = runpod.run(d, args.version, extra, cap, args.max_price, args.gpu)
     if rc == 3:
         print("paused with the state saved: run the same command again to resume")
         return 3
@@ -243,6 +243,8 @@ def main(argv=None) -> int:
                    help="GPU memory profile (local; a pod always has 80 GB): full 80 GB, offload 48 GB, nf4 24 GB")
     r.add_argument("--max-price", type=float, default=3.0, help="RunPod: most you will pay per hour (USD)")
     r.add_argument("--yes", action="store_true", help="RunPod: really rent the pod (it costs money)")
+    r.add_argument("--gpu", action="append", help="RunPod: GPU type to try, in order (repeat the option; default "
+                   "paint.json runpod.gpuTypes), e.g. --gpu 'NVIDIA A100 80GB PCIe'")
     r.add_argument("--force", action="store_true", help="paint even if the block is waiting or done")
     r.add_argument("--stub", action="store_true", help=argparse.SUPPRESS)
     s = sub.add_parser("submit")

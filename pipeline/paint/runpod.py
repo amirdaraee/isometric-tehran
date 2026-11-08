@@ -46,7 +46,9 @@ def api_key() -> str:
 
 def _call(method: str, path: str, body: dict | None = None) -> dict:
     req = urllib.request.Request(API + path, method=method, data=None if body is None else json.dumps(body).encode(),
-                                 headers={"Authorization": f"Bearer {api_key()}", "Content-Type": "application/json"})
+                                 headers={"Authorization": f"Bearer {api_key()}", "Content-Type": "application/json",
+                                          # RunPod's CDN refuses Python's default User-Agent (error 1010)
+                                          "User-Agent": "isometric-tehran-painter/1"})
     try:
         with urllib.request.urlopen(req, timeout=60) as r:  # noqa: S310 (fixed https endpoint)
             txt = r.read().decode()
@@ -64,8 +66,8 @@ def ssh_key() -> tuple[Path, str]:
 
 
 class Pod:
-    def __init__(self, name: str, max_price: float):
-        self.name, self.max_price = name, max_price
+    def __init__(self, name: str, max_price: float, gpus: list[str] | None = None):
+        self.name, self.max_price, self.gpus = name, max_price, gpus
         self.id: str | None = None
         self.price = 0.0
         self.t0 = time.time()
@@ -76,7 +78,7 @@ class Pod:
         rp = config.settings()["runpod"]
         key, pub = ssh_key()
         last = None
-        for gpu in rp["gpuTypes"]:
+        for gpu in self.gpus or rp["gpuTypes"]:
             for cloud in rp["cloudTypes"]:
                 body = {"name": self.name, "imageName": rp["image"], "gpuTypeIds": [gpu], "gpuCount": 1,
                         "cloudType": cloud, "containerDiskInGb": rp["containerDiskGb"], "volumeInGb": 0,
@@ -160,25 +162,36 @@ class Pod:
         raise RuntimeError("the pod did not answer on SSH")
 
 
-def run(block_dir: Path, version: str, painter_args: list[str], hours: float, max_price: float) -> int:
+def run(block_dir: Path, version: str, painter_args: list[str], hours: float, max_price: float,
+        gpus: list[str] | None = None) -> int:
     """Paint one prepared block on a new pod; returns the painter's exit code (0 done, 3 paused)."""
     bid = block_dir.name
-    pod = Pod(f"isometric-tehran-{bid}-{version}", max_price)
+    pod = Pod(f"isometric-tehran-{bid}-{version}", max_price, gpus)
     rel = block_dir.resolve().relative_to(ROOT)
     try:
         pod.create()
         pod.wait_ssh()
         deadline = int(time.time() + hours * 3600)
-        pod.ssh(f"mkdir -p {REMOTE}/pipeline {REMOTE}/{rel}")
-        pod.rsync(str(ROOT / "city.json"), f"pod:{REMOTE}/")
-        pod.rsync(str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/")
-        pod.rsync(str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/")
-        pod.rsync(str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
-                  ["--exclude", "__pycache__", "--exclude", "submissions"])
-        pod.rsync(str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"])
+        # the image may not have rsync: install it if needed, and stop if any copy fails (no point painting then)
+        if pod.ssh(f"mkdir -p {REMOTE}/pipeline {REMOTE}/{rel} && (command -v rsync >/dev/null || "
+                   f"(apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq rsync)) "
+                   f"> /workspace/apt.log 2>&1") != 0:
+            raise RuntimeError("could not install rsync on the pod (see /workspace/apt.log there)")
+        copies = [(str(ROOT / "city.json"), f"pod:{REMOTE}/", None),
+                  (str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/", None),
+                  (str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/", None),
+                  (str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
+                   ["--exclude", "__pycache__", "--exclude", "submissions"]),
+                  (str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"])]
+        for src, dest, extra in copies:
+            if pod.rsync(src, dest, extra) != 0:
+                raise RuntimeError(f"could not copy {src} to the pod")
         args = " ".join(shlex.quote(a) for a in [str(deadline), f"{REMOTE}/{rel}", version, *painter_args])
         pod.ssh(f"rm -f /workspace/rc; setsid nohup bash {REMOTE}/pipeline/paint/pod_run.sh {args} "
                 f"> /workspace/pod_run.out 2>&1 < /dev/null &")
+        time.sleep(5)
+        if pod.ssh("pgrep -f pod_run.sh >/dev/null || test -s /workspace/rc") != 0:
+            raise RuntimeError("pod_run.sh did not start: " + str(pod.ssh("cat /workspace/pod_run.out", capture=True)))
         print(f"painting on the pod; deadline {time.strftime('%H:%M', time.localtime(deadline))} "
               f"(cap ${hours * pod.price:.2f}). Ctrl-C deletes the pod.", flush=True)
         last = ""
