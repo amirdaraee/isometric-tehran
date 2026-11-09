@@ -84,8 +84,13 @@ def lab(rgb: np.ndarray) -> np.ndarray:
     return a
 
 
-def bg_mask(rgb: np.ndarray, tol: int = 6) -> np.ndarray:
-    return np.abs(rgb.astype(np.int16) - np.array(BG)).sum(axis=2) < tol
+def bg_mask(rgb: np.ndarray, tol: int = 6, speck: int = 9) -> np.ndarray:
+    """The empty map edge: pixels of the background colour, in regions at least `speck` px across. Painted art has
+    dark ink lines and shadows close to that colour; the map edge is one large region, so specks are dropped."""
+    m = np.abs(rgb.astype(np.int16) - np.array(BG)).sum(axis=2) < tol
+    if speck > 1 and m.any():
+        m = cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_OPEN, np.ones((speck, speck), np.uint8)) > 0
+    return m
 
 
 def position(canvas: np.ndarray, render: np.ndarray) -> dict:
