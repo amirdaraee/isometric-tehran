@@ -162,56 +162,116 @@ class Pod:
         raise RuntimeError("the pod did not answer on SSH")
 
 
+def _setup(pod: Pod) -> None:
+    """Copy the painter code to a fresh pod (installing rsync first if the image lacks it)."""
+    # the image may not have rsync: install it if needed, and stop if any copy fails (no point painting then)
+    if pod.ssh(f"mkdir -p {REMOTE}/pipeline && (command -v rsync >/dev/null || "
+               f"(apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq rsync)) "
+               f"> /workspace/apt.log 2>&1") != 0:
+        raise RuntimeError("could not install rsync on the pod (see /workspace/apt.log there)")
+    copies = [(str(ROOT / "city.json"), f"pod:{REMOTE}/", None),
+              (str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/", None),
+              (str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/", None),
+              (str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
+               ["--exclude", "__pycache__", "--exclude", "submissions"])]
+    for src, dest, extra in copies:
+        if pod.rsync(src, dest, extra) != 0:
+            raise RuntimeError(f"could not copy {src} to the pod")
+
+
+def _paint(pod: Pod, block_dir: Path, version: str, painter_args: list[str], hours: float) -> int:
+    """Copy one prepared block to the pod, paint it there, copy the result back; the painter's exit code."""
+    rel = block_dir.resolve().relative_to(ROOT)
+    deadline = int(time.time() + hours * 3600)
+    if pod.ssh(f"mkdir -p {REMOTE}/{rel}") != 0 or \
+            pod.rsync(str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"]) != 0:
+        raise RuntimeError(f"could not copy {block_dir} to the pod")
+    args = " ".join(shlex.quote(a) for a in [str(deadline), f"{REMOTE}/{rel}", version, *painter_args])
+    pod.ssh(f"rm -f /workspace/rc; setsid nohup bash {REMOTE}/pipeline/paint/pod_run.sh {args} "
+            f"> /workspace/pod_run.out 2>&1 < /dev/null &")
+    time.sleep(5)
+    # "[p]od_run.sh": a plain pattern would match the remote shell running this very command
+    if pod.ssh("pgrep -f '[p]od_run.sh' >/dev/null || test -s /workspace/rc") != 0:
+        raise RuntimeError("pod_run.sh did not start: " + str(pod.ssh("cat /workspace/pod_run.out", capture=True)))
+    print(f"painting {block_dir.name} on the pod; deadline {time.strftime('%H:%M', time.localtime(deadline))} "
+          f"(cap ${hours * pod.price:.2f}). Ctrl-C deletes the pod.", flush=True)
+    last = ""
+    gone = 0
+    status = f"{REMOTE}/{rel}/live_{version}/status.json"
+    while True:
+        time.sleep(30)
+        rc = str(pod.ssh("cat /workspace/rc 2>/dev/null", capture=True)).strip()
+        line = str(pod.ssh("tail -n 1 /workspace/run.log 2>/dev/null", capture=True)).strip()
+        if line and line != last:
+            print(f"  [{pod.cost():.2f} $] {line}", flush=True)
+            last = line
+        if rc:
+            break
+        # A community pod's container can restart under us, killing pod_run.sh before it writes its exit code:
+        # don't wait for the deadline. The painter's status says whether the canvas was finished.
+        alive = pod.ssh("pgrep -f '[p]od_run.sh' >/dev/null") == 0
+        gone = 0 if alive else gone + 1
+        if gone >= 2:
+            st = str(pod.ssh(f"cat {status} 2>/dev/null", capture=True))
+            done = '"state": "done"' in st and pod.ssh(f"test -s {REMOTE}/{rel}/canvas_{version}.png") == 0
+            print("  pod_run.sh is gone without an exit code (the container restarted?): "
+                  + ("the canvas was finished, copying it back" if done else "stopping"), flush=True)
+            rc = "0" if done else "125"
+            break
+        if time.time() > deadline + 300:
+            print("past the deadline: stopping", flush=True)
+            rc = "124"
+            break
+    back = ["--include", "canvas_*.png", "--include", "live_*/", "--include", "live_*/*", "--include", "state_*/",
+            "--include", "state_*/*", "--exclude", "*"]
+    pod.rsync(f"pod:{REMOTE}/{rel}/", str(block_dir) + "/", back)
+    pod.rsync("pod:/workspace/run.log", str(block_dir / f"pod_{version}.log"))
+    return int(rc)
+
+
 def run(block_dir: Path, version: str, painter_args: list[str], hours: float, max_price: float,
         gpus: list[str] | None = None) -> int:
     """Paint one prepared block on a new pod; returns the painter's exit code (0 done, 3 paused)."""
-    bid = block_dir.name
-    pod = Pod(f"isometric-tehran-{bid}-{version}", max_price, gpus)
-    rel = block_dir.resolve().relative_to(ROOT)
+    pod = Pod(f"isometric-tehran-{block_dir.name}-{version}", max_price, gpus)
     try:
         pod.create()
         pod.wait_ssh()
-        deadline = int(time.time() + hours * 3600)
-        # the image may not have rsync: install it if needed, and stop if any copy fails (no point painting then)
-        if pod.ssh(f"mkdir -p {REMOTE}/pipeline {REMOTE}/{rel} && (command -v rsync >/dev/null || "
-                   f"(apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq rsync)) "
-                   f"> /workspace/apt.log 2>&1") != 0:
-            raise RuntimeError("could not install rsync on the pod (see /workspace/apt.log there)")
-        copies = [(str(ROOT / "city.json"), f"pod:{REMOTE}/", None),
-                  (str(ROOT / "pipeline" / "common.py"), f"pod:{REMOTE}/pipeline/", None),
-                  (str(ROOT / "pipeline" / "pyproject.toml"), f"pod:{REMOTE}/pipeline/", None),
-                  (str(ROOT / "pipeline" / "paint") + "/", f"pod:{REMOTE}/pipeline/paint/",
-                   ["--exclude", "__pycache__", "--exclude", "submissions"]),
-                  (str(block_dir) + "/", f"pod:{REMOTE}/{rel}/", ["--exclude", "live_*"])]
-        for src, dest, extra in copies:
-            if pod.rsync(src, dest, extra) != 0:
-                raise RuntimeError(f"could not copy {src} to the pod")
-        args = " ".join(shlex.quote(a) for a in [str(deadline), f"{REMOTE}/{rel}", version, *painter_args])
-        pod.ssh(f"rm -f /workspace/rc; setsid nohup bash {REMOTE}/pipeline/paint/pod_run.sh {args} "
-                f"> /workspace/pod_run.out 2>&1 < /dev/null &")
-        time.sleep(5)
-        if pod.ssh("pgrep -f pod_run.sh >/dev/null || test -s /workspace/rc") != 0:
-            raise RuntimeError("pod_run.sh did not start: " + str(pod.ssh("cat /workspace/pod_run.out", capture=True)))
-        print(f"painting on the pod; deadline {time.strftime('%H:%M', time.localtime(deadline))} "
-              f"(cap ${hours * pod.price:.2f}). Ctrl-C deletes the pod.", flush=True)
-        last = ""
-        while True:
-            time.sleep(30)
-            rc = str(pod.ssh("cat /workspace/rc 2>/dev/null", capture=True)).strip()
-            line = str(pod.ssh("tail -n 1 /workspace/run.log 2>/dev/null", capture=True)).strip()
-            if line and line != last:
-                print(f"  [{pod.cost():.2f} $] {line}", flush=True)
-                last = line
-            if rc:
+        _setup(pod)
+        return _paint(pod, block_dir, version, painter_args, hours)
+    finally:
+        pod.delete()
+
+
+def session(bids: list[str], version: str, painter_args: list[str], hours_each, max_price: float,
+            prepare, finish, gpus: list[str] | None = None, max_cost: float | None = None) -> list[str]:
+    """Paint several blocks in order on ONE pod, so the model is downloaded and installed once.
+
+    prepare(bid) writes a block's inputs (after the blocks before it came back, so it holds them) and returns its
+    folder; finish(bid, folder) cleans up a returned canvas. hours_each(bid, first) is a block's time cap: every block
+    moves the pod's deadline to now + its cap, so a pod left alone still ends itself. Stops at the first block that
+    fails or pauses, and before a block whose cap would take the pod's cost over max_cost. Returns the blocks
+    painted; the pod is deleted at the end, on errors and on Ctrl-C."""
+    pod = Pod(f"isometric-tehran-session-{version}", max_price, gpus)
+    done: list[str] = []
+    try:
+        pod.create()
+        pod.wait_ssh()
+        _setup(pod)
+        for n, bid in enumerate(bids):
+            d = prepare(bid)
+            hours = hours_each(bid, n == 0)
+            if max_cost is not None and pod.cost() + hours * pod.price > max_cost:
+                print(f"stopping before {bid}: ${pod.cost():.2f} spent, its cap ${hours * pod.price:.2f} would pass "
+                      f"--max-cost ${max_cost:.2f}", flush=True)
                 break
-            if time.time() > deadline + 300:
-                print("past the deadline: stopping", flush=True)
-                rc = "124"
+            t = time.time()
+            rc = _paint(pod, d, version, painter_args, hours)
+            print(f"{bid}: exit {rc} after {(time.time() - t) / 60:.1f} min; pod ${pod.cost():.2f} so far", flush=True)
+            if rc != 0 or not (d / f"canvas_{version}.png").exists():
+                print(f"{bid} did not finish (exit {rc}): stopping the session", flush=True)
                 break
-        back = ["--include", "canvas_*.png", "--include", "live_*/", "--include", "live_*/*", "--include", "state_*/",
-                "--include", "state_*/*", "--exclude", "*"]
-        pod.rsync(f"pod:{REMOTE}/{rel}/", str(block_dir) + "/", back)
-        pod.rsync("pod:/workspace/run.log", str(block_dir / f"pod_{version}.log"))
-        return int(rc)
+            finish(bid, d)
+            done.append(bid)
+        return done
     finally:
         pod.delete()

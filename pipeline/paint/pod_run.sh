@@ -17,7 +17,14 @@ end_pod() {
   curl -s -m 30 -H "Content-Type: application/json" -H "Authorization: Bearer $RUNPOD_API_KEY" \
     -d "{\"query\":\"mutation { podTerminate(input:{podId:\\\"$RUNPOD_POD_ID\\\"}) }\"}" https://api.runpod.io/graphql >> "$LOG"
 }
-( while [ "$(date +%s)" -lt "$DEADLINE" ]; do sleep 30; done; end_pod "deadline reached" ) > /workspace/watchdog.log 2>&1 &
+# One watchdog per pod, reading the deadline from a file: in a session (several blocks on one pod) each block
+# moves the deadline to its own, and an earlier block's watchdog must not end the pod under a later one.
+echo "$DEADLINE" > /workspace/DEADLINE
+if ! { [ -f /workspace/watchdog.pid ] && kill -0 "$(cat /workspace/watchdog.pid)" 2>/dev/null; }; then
+  ( while [ "$(date +%s)" -lt "$(cat /workspace/DEADLINE 2>/dev/null || echo 0)" ]; do sleep 30; done
+    end_pod "deadline reached" ) > /workspace/watchdog.log 2>&1 &
+  echo $! > /workspace/watchdog.pid
+fi
 
 if [ ! -x /venv/bin/python ]; then
   echo "SETUP $(date -u +%H:%M:%S)" >> "$LOG"
