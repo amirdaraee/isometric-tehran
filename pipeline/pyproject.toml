@@ -28,8 +28,8 @@ dev = ["pytest", "ruff"]
 paint = [
   "torch>=2.8",
   "diffusers @ git+https://github.com/huggingface/diffusers.git@c943837899b16cbae2f619b8dd4f7bb6f07dd81a",
-  "transformers==5.5.3",
-  "peft==0.18.1",
+  "transformers==5.22.2",
+  "peft==0.21.2",
   "accelerate",
   "safetensors",
   "huggingface_hub",
