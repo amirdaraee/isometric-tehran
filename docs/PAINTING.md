@@ -84,17 +84,19 @@ parameter counts), so keep about 80 GB of disk free for the Hugging Face cache a
 | Light LoRA, 15 steps, guidance 3 (versions) | 1.0 to 1.3 | 2 to 11 min (partly empty blocks) | $0.17 to $0.73 on RunPod at $3.99/h |
 
 Peak GPU memory was not logged in Luxembourg; the painter now records it (`peak_gpu_gb` in the status file and
-the submission), so contributors' runs will fill this in.
+the submission). **Measured on Tehran's b00** (RunPod A100 80GB PCIe, `full`): 2.32 s per window, 9.6 min of
+painting for 244 model calls, 63.6 GB peak GPU memory; about 1 minute of setup and 3 minutes to download and load
+the model, so 13 minutes from pod start to canvas.
 
 **Estimated for a Tehran block** (4800 px; 25 or 36 windows per step, about 244 model calls for a full block at
-8 steps, fewer where neighbours are held or the map is empty). Only the H200 speed is measured; every other row is
+8 steps, fewer where neighbours are held or the map is empty). The H200 and A100 speeds are measured; every other row is
 an estimate from relative GPU speed, including about 4 minutes to load the model:
 
 | GPU | Profile | Minutes per day block |
 |---|---|---|
 | H200 | full | about 8 (speed measured) |
 | H100 80GB | full | about 9 |
-| A100 80GB | full | about 12 |
+| A100 80GB | full | about 13 (speed measured) |
 | L40S, RTX 6000 Ada | offload | about 18 |
 | RTX A6000 | offload | about 24 |
 | RTX 4090 | nf4 | about 28 |
@@ -174,6 +176,13 @@ On a rented GPU on your RunPod account (paid):
     .venv/bin/python paint/paint.py run b03 --backend runpod                # prints the cost, rents nothing
     .venv/bin/python paint/paint.py run b03 --backend runpod --yes          # rents one pod and paints
     #   --max-price 3.0   the most you will pay per hour (default $3.00); dearer pods are refused
+    #   --gpu 'NVIDIA A100 80GB PCIe'   GPU types to try, in order (repeat it; default paint.json runpod.gpuTypes)
+    .venv/bin/python paint/paint.py run b05 b07 --backend runpod --yes --max-cost 2   # several blocks, one pod
+
+Several blocks in one `run` are painted in order on **one pod**: the weights are downloaded once (3 to 9 minutes
+on RunPod), and each block is prepared after the ones before it came back, so it holds them. Each block moves the
+pod's deadline to its own, `--max-cost` refuses to start a block that could take the pod past that many dollars,
+and the session stops at the first block that fails.
 
 `run` downloads the accepted canvases of the block's neighbours (checking their checksums), writes the painter's
 inputs into `data/work/paint/b03/` (render crop, layout map, held neighbours, prompts), paints, and cleans up the

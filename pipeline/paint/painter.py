@@ -31,6 +31,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from paint.blend import bg_mask
 from paint.blocks import model_px
 from paint.config import BG
 from paint.md_core import Plan, feather, hold_mask, paint
@@ -82,8 +83,7 @@ def paint_block(block_dir: Path, version: str, model, steps: int, cfg: float, se
         + (", with layout" if layout is not None else ""))
 
     # Held pixels: finished neighbours (known/keep) and the empty map edge, which costs nothing to paint.
-    rarr = np.asarray(render, np.int16)
-    bg_px = np.abs(rarr - np.array(BG)).sum(axis=2) < 6
+    bg_px = bg_mask(np.asarray(render))
     known = hold = None
     known_img, keep_np = None, None
     kf, keepf = block_dir / f"known_{version}.png", block_dir / f"keep_{version}.png"

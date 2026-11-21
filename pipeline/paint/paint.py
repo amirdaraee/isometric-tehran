@@ -38,7 +38,7 @@ PIPE = Path(__file__).resolve().parent.parent
 GPUS = {
     "H200":         {"vram": 141, "memory": "full",    "s": 0.9,  "measured": True},
     "H100":         {"vram": 80,  "memory": "full",    "s": 1.2,  "measured": False},
-    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.0,  "measured": False},
+    "A100-80GB":    {"vram": 80,  "memory": "full",    "s": 2.32, "measured": True},  # b00, RunPod, 63.6 GB peak
     "L40S":         {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX 6000 Ada": {"vram": 48,  "memory": "offload", "s": 3.5,  "measured": False},
     "RTX A6000":    {"vram": 48,  "memory": "offload", "s": 5.0,  "measured": False},
@@ -135,9 +135,58 @@ def cmd_estimate(args) -> int:
 
 
 def cmd_run(args) -> int:
+    if args.backend == "runpod" and len(args.block) > 1:
+        return run_session(args)
+    for bid in args.block:
+        rc = run_one(args, bid)
+        if rc != 0:
+            return rc
+    return 0
+
+
+def run_session(args) -> int:
+    """Several blocks in order on one pod: the model is installed and downloaded once (runpod.session)."""
+    from paint import runpod
+
     plan = blocks.load_plan()
-    d = ensure_inputs(plan, args.block, args.version, args.force)
-    runs, cfg = print_estimate(args.block, args.version)
+    extra = ["--memory", "full"] + (["--model", "stub"] if args.stub else [])
+    total = 0.0
+    for n, bid in enumerate(args.block):  # inputs as they are now, for the estimate; prepared again before painting
+        ensure_inputs(plan, bid, args.version, args.force)
+        runs, cfg = print_estimate(bid, args.version)
+        total += pod_hours(runs, cfg)[0] if n == 0 else minutes(runs, POD_GPU, cfg) / 60
+    cap = args.max_cost if args.max_cost is not None else float("inf")
+    print(f"\nRunPod, on your account (RUNPOD_API_KEY): ONE pod for {len(args.block)} blocks at up to "
+          f"${args.max_price:.2f}/h.\n  expected about {total * 60:.0f} min, about ${total * args.max_price:.2f} at that "
+          f"price;\n  every block has its own deadline (the pod ends itself if left alone)"
+          + (f"; no block starts that could take the pod past ${cap:.2f}" if args.max_cost is not None else "") + ".")
+    if not args.yes:
+        print("Nothing rented. Add --yes to rent the pod and paint.")
+        return 1
+
+    def hours_each(bid: str, first: bool) -> float:
+        runs, wins = window_runs(bid, args.version)
+        cfg = config.version(args.version)["cfg"]
+        if first:
+            return pod_hours(runs, cfg)[1]
+        return minutes(runs, POD_GPU, cfg) / 60 * 1.5 + 0.25
+
+    def finish(bid: str, d: Path) -> None:
+        postprocess(d, args.version)
+        print(f"painted: {d / f'canvas_{args.version}.png'}", flush=True)
+
+    done = runpod.session(args.block, args.version, extra, hours_each, args.max_price,
+                          lambda bid: ensure_inputs(plan, bid, args.version, args.force), finish, args.gpu,
+                          args.max_cost)
+    print(f"session: painted {', '.join(done) or 'nothing'}; not painted: "
+          f"{', '.join(b for b in args.block if b not in done) or 'none'}")
+    return 0 if len(done) == len(args.block) else 1
+
+
+def run_one(args, bid: str) -> int:
+    plan = blocks.load_plan()
+    d = ensure_inputs(plan, bid, args.version, args.force)
+    runs, cfg = print_estimate(bid, args.version)
     extra = ["--memory", args.memory] + (["--model", "stub"] if args.stub else [])
     if args.backend == "local":
         print(f"painting on this machine ({args.memory}); the state is saved after every step, so Ctrl-C and run "
@@ -154,7 +203,7 @@ def cmd_run(args) -> int:
             return 1
         from paint import runpod
 
-        rc = runpod.run(d, args.version, extra, cap, args.max_price)
+        rc = runpod.run(d, args.version, extra, cap, args.max_price, args.gpu)
     if rc == 3:
         print("paused with the state saved: run the same command again to resume")
         return 3
@@ -164,7 +213,7 @@ def cmd_run(args) -> int:
         return rc or 1
     postprocess(d, args.version)
     print(f"\npainted: {d / f'canvas_{args.version}.png'}\nlook at it, then: python paint/paint.py submit "
-          f"{args.block} --version {args.version} --by <your GitHub user>")
+          f"{bid} --version {args.version} --by <your GitHub user>")
     return 0
 
 
@@ -236,13 +285,17 @@ def main(argv=None) -> int:
     e.add_argument("block")
     e.add_argument("--version", default="day")
     r = sub.add_parser("run")
-    r.add_argument("block")
+    r.add_argument("block", nargs="+", help="block id; several on RunPod: painted in order on one pod")
     r.add_argument("--version", default="day")
     r.add_argument("--backend", required=True, choices=["local", "runpod"])
+    r.add_argument("--max-cost", type=float, help="RunPod session: start no block that could take the pod past this "
+                   "many dollars")
     r.add_argument("--memory", default="full", choices=["full", "offload", "nf4"],
                    help="GPU memory profile (local; a pod always has 80 GB): full 80 GB, offload 48 GB, nf4 24 GB")
     r.add_argument("--max-price", type=float, default=3.0, help="RunPod: most you will pay per hour (USD)")
     r.add_argument("--yes", action="store_true", help="RunPod: really rent the pod (it costs money)")
+    r.add_argument("--gpu", action="append", help="RunPod: GPU type to try, in order (repeat the option; default "
+                   "paint.json runpod.gpuTypes), e.g. --gpu 'NVIDIA A100 80GB PCIe'")
     r.add_argument("--force", action="store_true", help="paint even if the block is waiting or done")
     r.add_argument("--stub", action="store_true", help=argparse.SUPPRESS)
     s = sub.add_parser("submit")

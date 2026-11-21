@@ -18,7 +18,7 @@ export const DEFAULTS = {
   tiltShift: false,
   /** "Streets" layer with street names (in the interface language). */
   streets: true,
-  /** Place pins with labels in English and Persian. */
+  /** Place pins, named in the interface language (both names in the tooltip and the card). */
   pins: true,
   /** Search box for places and streets (English and Persian names). */
   search: true,

@@ -20,14 +20,16 @@ OUT = ROOT / "web" / "public" / "tiles"
 
 def main():
     m = json.loads((WORK / "mosaic.json").read_text())
-    frames = [pyvips.Image.new_from_file(str(WORK / "frames" / f"{c}_{r}.jpg"), access="sequential")
-              for r in range(m["rows"]) for c in range(m["cols"])]
-    mosaic = pyvips.Image.arrayjoin(frames, across=m["cols"])
     # Painted blocks laid over the render: data/work/tiles/painted.json lists {"file", "x0", "y0", "w", "h"} in
     # mosaic pixels ("file" relative to data/work/tiles), in plan order, and the feather in map px.
     pj = WORK / "tiles" / "painted.json"
     pdata = json.loads(pj.read_text()) if pj.exists() else {}
     painted = pdata.get("patches", []) if isinstance(pdata, dict) else pdata
+    # Compositing reads the render out of order (crop, then insert), which sequential JPEG access refuses.
+    access = "random" if painted else "sequential"
+    frames = [pyvips.Image.new_from_file(str(WORK / "frames" / f"{c}_{r}.jpg"), access=access)
+              for r in range(m["rows"]) for c in range(m["cols"])]
+    mosaic = pyvips.Image.arrayjoin(frames, across=m["cols"])
     if painted:
         mosaic = composite(mosaic, painted, int(pdata.get("feather", 600)) if isinstance(pdata, dict) else 600,
                            WORK / "tiles")
@@ -35,12 +37,21 @@ def main():
     # Replace only the day map: the other painted versions (build_variant_tiles.py) live next to it and stay.
     OUT.mkdir(parents=True, exist_ok=True)
     old_meta = json.loads((OUT / "meta.json").read_text()) if (OUT / "meta.json").exists() else {}
+    # Build next to the old pyramid and swap at the end, so a failed build leaves the old tiles in place.
+    new = OUT / "map_new"
+    for p in (OUT / "map_new_files", OUT / "map_new.dzi"):
+        if p.is_dir():
+            shutil.rmtree(p)
+        elif p.exists():
+            p.unlink()
+    mosaic.dzsave(str(new), tile_size=TILE, overlap=0, suffix=".webp[Q=78,effort=4]", layout="dz")
     for p in (OUT / "map_files", OUT / "map.dzi"):
         if p.is_dir():
             shutil.rmtree(p)
         elif p.exists():
             p.unlink()
-    mosaic.dzsave(str(OUT / "map"), tile_size=TILE, overlap=0, suffix=".webp[Q=78,effort=4]", layout="dz")
+    (OUT / "map_new_files").rename(OUT / "map_files")
+    (OUT / "map_new.dzi").rename(OUT / "map.dzi")
     # Levels below one tile are never requested: the viewer stops at the 512 px level.
     for d in (OUT / "map_files").iterdir():
         if d.is_dir() and int(d.name) < 9:

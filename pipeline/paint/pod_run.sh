@@ -17,7 +17,14 @@ end_pod() {
   curl -s -m 30 -H "Content-Type: application/json" -H "Authorization: Bearer $RUNPOD_API_KEY" \
     -d "{\"query\":\"mutation { podTerminate(input:{podId:\\\"$RUNPOD_POD_ID\\\"}) }\"}" https://api.runpod.io/graphql >> "$LOG"
 }
-( while [ "$(date +%s)" -lt "$DEADLINE" ]; do sleep 30; done; end_pod "deadline reached" ) > /workspace/watchdog.log 2>&1 &
+# One watchdog per pod, reading the deadline from a file: in a session (several blocks on one pod) each block
+# moves the deadline to its own, and an earlier block's watchdog must not end the pod under a later one.
+echo "$DEADLINE" > /workspace/DEADLINE
+if ! { [ -f /workspace/watchdog.pid ] && kill -0 "$(cat /workspace/watchdog.pid)" 2>/dev/null; }; then
+  ( while [ "$(date +%s)" -lt "$(cat /workspace/DEADLINE 2>/dev/null || echo 0)" ]; do sleep 30; done
+    end_pod "deadline reached" ) > /workspace/watchdog.log 2>&1 &
+  echo $! > /workspace/watchdog.pid
+fi
 
 if [ ! -x /venv/bin/python ]; then
   echo "SETUP $(date -u +%H:%M:%S)" >> "$LOG"
@@ -30,7 +37,12 @@ print("\n".join(["numpy", "pillow", "scipy", "opencv-python-headless"]))
 EOF
   /venv/bin/pip install -q --no-cache-dir -r /workspace/requirements.txt >> /workspace/setup.log 2>&1 \
     || { echo "SETUP FAILED (see /workspace/setup.log)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
-  /venv/bin/python -c "import torch;assert torch.cuda.is_available();print('torch',torch.__version__,torch.version.cuda)" \
+  # The image has torch but not torchvision, which the Qwen2-VL processor needs: install the build that matches
+  # the image's torch (torch 2.X.Y -> torchvision 0.(X+15).Y, from the same CUDA index), keeping that torch.
+  TV=$(/venv/bin/python -c "import torch;v=torch.__version__.split('+')[0].split('.');c=torch.version.cuda.replace('.','');print(f'torchvision==0.{int(v[1])+15}.{v[2]} torch=={torch.__version__.split(\"+\")[0]} --index-url https://download.pytorch.org/whl/cu{c}')")
+  /venv/bin/python -c "import torchvision" 2>/dev/null || /venv/bin/pip install -q --no-cache-dir $TV >> /workspace/setup.log 2>&1 \
+    || { echo "SETUP FAILED (torchvision: $TV; see /workspace/setup.log)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
+  /venv/bin/python -c "import torch,torchvision;assert torch.cuda.is_available();print('torch',torch.__version__,torch.version.cuda,'torchvision',torchvision.__version__)" \
     >> "$LOG" 2>&1 || { echo "SETUP FAILED (no CUDA)" >> "$LOG"; echo 1 > /workspace/rc; exit 1; }
   echo "SETUP DONE $(date -u +%H:%M:%S)" >> "$LOG"
 fi
